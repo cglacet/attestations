@@ -1,0 +1,34 @@
+raisons:
+  - achats
+
+gens:
+  - prenom: Prenom 1
+    nom: Nom 1
+    date_naissance: jj/mm/yyyy
+    lieu_naissance: Ville de naissance 1
+    email: christian.glacet@gmail.com #mon.email@gmail.com
+
+  - prenom: Prenom 2
+    nom: Nom 2
+    date_naissance: jj/mm/yyyy
+    lieu_naissance: Ville de naissance personne 2
+    # email: mon.autre.email@gmail.com
+
+lieux:
+  maison:
+    addresse: votre addresse
+    code_postal: code postal
+    ville: Ville de résidence
+
+
+# Pas utilisé, juste pour faire des copier-coller: 
+autres_raisons:
+  - travail
+  - achats 		     
+  - sante 		     
+  - famille 		   
+  - handicap 		   
+  - sport_animaux  
+  - convocation 	 
+  - missions 		   
+  - enfants 		   

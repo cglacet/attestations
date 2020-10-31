@@ -1,0 +1,32 @@
+{
+  "name": "chris-attestation",
+  "version": "1.0.0",
+  "description": "Generer des attestation nov 2020",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "help": "babel-node src/help.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "covid",
+    "attestation",
+    "automatique"
+  ],
+  "author": "christian glacet",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1"
+  },
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "js-yaml": "^3.14.0",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.4.14",
+    "pdf-lib": "^1.11.2",
+    "qrcode": "^1.4.4",
+    "sendmail": "^1.6.1"
+  }
+}
