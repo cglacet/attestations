@@ -4,8 +4,8 @@ import { profiles, reasons, MAIL_AVAILABLE } from './config';
 import { attestationMail } from './mail';
 
 global.fetch = require("node-fetch");
-const REPO_URL = 'https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/raw/main';
-const PDF_BASE = `${REPO_URL}/src/certificate.pdf`; 
+const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
+const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
 
 async function generateAll(){
     for (const profile of profiles()){
@@ -15,6 +15,7 @@ async function generateAll(){
 
 async function generateFor(profile){
     const pdf = await generatePdf(profile, reasons.join(', '), PDF_BASE);
+    console.log(profile['email'], MAIL_AVAILABLE);
     if (MAIL_AVAILABLE && profile['email']){
         console.log(`Envoi de l'autorisation par mail à ${profile['email']} en cours ...`);
         attestationMail(profile['email'], mailTitle(profile), mailAttachments(profile, pdf));

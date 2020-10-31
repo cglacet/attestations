@@ -18,7 +18,7 @@ const CONFIG = yaml.safeLoad(fs.readFileSync(YAML_CONFIG_FILE, 'utf8'));
 const DEFAULT_MAIL_PWD = 'abcdefghijklmnop';
 const YAML_MAIL_CONFIG_FILE = './mail-config.yml';
 const MAIL_CONFIG = yaml.safeLoad(fs.readFileSync(YAML_MAIL_CONFIG_FILE, 'utf8'));
-let MAIL_AVAILABLE = true;
+export let MAIL_AVAILABLE = true;
 
 if (MAIL_CONFIG['pass'] == DEFAULT_MAIL_PWD){
     console.error("Vous n'avez pas configuré vos identifiants pour l'envoi automatique d'emails (dans le fichier 'mail-config.yml').");
