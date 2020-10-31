@@ -1,3 +1,6 @@
+# Private credentials
+mail-config.yml
+
 # Logs
 logs
 *.log
