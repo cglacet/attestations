@@ -15,7 +15,6 @@ async function generateAll(){
 
 async function generateFor(profile){
     const pdf = await generatePdf(profile, reasons.join(', '), PDF_BASE);
-    console.log(profile['email'], MAIL_AVAILABLE);
     if (MAIL_AVAILABLE && profile['email']){
         console.log(`Envoi de l'autorisation par mail à ${profile['email']} en cours ...`);
         attestationMail(profile['email'], mailTitle(profile), mailAttachments(profile, pdf));
