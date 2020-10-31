@@ -14,10 +14,10 @@ Puis pour générer des attestations:
 npm start -s
 ```
 
-Pour configurer les attestations il suffit d'éditer le fichier [config.yml][config.yml].
+Pour configurer les attestations il suffit d'éditer le fichier [config.yml](config.yml).
 Pour activer l'envoi d'emails automatiques il faut utiliser votre 
 email avec un [mot de passe pour application][gmail app pwd] et éditer le 
-fichier [mail-config.yml][mail-config.yml]:
+fichier [mail-config.yml](mail-config.yml):
 
 ```yaml
 user: votre.email.d.envoi@gmail.com
