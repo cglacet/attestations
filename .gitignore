@@ -1,6 +1,9 @@
 # Private credentials
 mail-config.yml
 
+# Generated PDFs
+*.pdf
+
 # Logs
 logs
 *.log
