@@ -24,5 +24,11 @@ user: votre.email.d.envoi@gmail.com
 pass: abcdefghijklmnop
 ```
 
+## TODO
+
+- [ ] Plusieurs domiciles (avec ref vers le nom du domicile pour chaque personne)
+- [ ] Ajouter un délai (eg., sortie dans 1h)
+- [ ] Rendre accessible en ligne avec un DL à la place de l'envoi de mail (comment faire pour le fichier de config? Une URL?)
+
 
 [gmail app pwd]: https://support.google.com/mail/answer/185833?hl=fr-FR#app-passwords
