@@ -2,13 +2,13 @@ raisons:
   - achats
 
 gens:
-  - prenom: Prenom 1
+  - prénom: Prenom 1
     nom: Nom 1
     date_naissance: jj/mm/yyyy
     lieu_naissance: Ville de naissance 1
     email: christian.glacet@gmail.com #mon.email@gmail.com
 
-  - prenom: Prenom 2
+  - prénom: Prenom 2
     nom: Nom 2
     date_naissance: jj/mm/yyyy
     lieu_naissance: Ville de naissance personne 2
@@ -16,7 +16,7 @@ gens:
 
 lieux:
   maison:
-    addresse: votre addresse
+    adresse: votre adresse
     code_postal: code postal
     ville: Ville de résidence
 

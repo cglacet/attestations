@@ -4,10 +4,10 @@ import dateFormat from 'dateformat';
 
 const TRANSLATION_RULES = new Map([
     ['nom', 'lastname'],
-    ['prenom', 'firstname'],
+    ['prénom', 'firstname'],
     ['date_naissance', 'birthday'],
     ['lieu_naissance', 'placeofbirth'],
-    ['addresse', 'address'],
+    ['adresse', 'address'],
     ['code_postal', 'zipcode'],
     ['ville', 'city'],
 ]);
