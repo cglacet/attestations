@@ -69,8 +69,8 @@ export function profile(person, delay){
     const date = (delay != undefined) ? new Date(Date.now() + 60000 * parseFloat(delay)) : new Date();
     return {
         ...person,
-        'heuresortie': date.toLocaleDateString('fr-FR', { timeZone: "Europe/Paris" }),
-        'datesortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris" }),
+        'heuresortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris", hour12: false }),
+        'datesortie': date.toLocaleDateString('fr-FR', { timeZone: "Europe/Paris" }),
     }
 }
 
