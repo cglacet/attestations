@@ -9,7 +9,6 @@ export async function getCertificates(reasons){
     for (const profile of profiles()){
         promises.push(getCertificate(profile, reasons));
     }
-    console.log("All schedules", promises);
     return await Promise.all(promises);
 }
 
@@ -37,7 +36,6 @@ export async function certificatePDF(profile, reasons){
 }
 
 export function pdfName(profile){
-    console.log("P = ", profile);
     const name = `${profile['firstname']}_${profile['lastname']}`;
     const date = `${profile['datesortie'].replace(/\//g, '-')}_${profile['heuresortie'].replace(':', 'h')}`;
     return `${name}_${date}.pdf`;

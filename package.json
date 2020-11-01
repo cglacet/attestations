@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "blob-polyfill": "^4.0.20200601",
+    "capitalize": "^2.0.3",
     "dateformat": "^3.0.3",
     "js-yaml": "^3.14.0",
     "node-fetch": "^2.6.1",
