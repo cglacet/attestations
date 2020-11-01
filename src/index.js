@@ -10,10 +10,12 @@ const { send, json, type } = server.reply;
 
 
 server({ port: 8080 }, [
+    // Endpoints that use the built-in config file:
     get('/certificate', certificate),
     get('/certificate-download', certificateDownload),
-    get('/get', certificateNoConfig),
     get('/certificates', certificates)
+    // Public endpoints, no config
+    get('/get', certificateNoConfig),
 ]);
 
 
