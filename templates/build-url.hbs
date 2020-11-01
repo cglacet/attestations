@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-   scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <title>Créer un lien pour générer une attestation</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+        html {
+            font-family: 'Lato', sans-serif;
+            background-color: #F1F4FB;
+            margin: 0;
+        }
+        #url-div {
+            border-bottom: 1px solid #444;
+            margin-bottom: 50px;
+        }
+        #url-container {
+            overflow-wrap: anywhere;
+            margin: 30px 0;
+        }
+        #form-container {
+            width: 50%; 
+            max-width: 400px; 
+            margin: 0 auto; 
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            padding: 50px;
+            box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
+        }
+        .center {
+            margin: 0 auto;
+        }
+        #inputs {
+            display:grid;
+            grid-template-columns: max-content 1fr;
+            grid-gap:5px;
+        }
+        label {
+            font-weight: bolder;
+            color: cornflowerblue;
+            text-align: right;
+            margin: auto 20px auto 0;
+        }
+        input {
+            margin-bottom: 10px;
+            margin-top: 5px;
+            width: 90%;
+            padding: 10px 5px;
+        }
+        input[type=text]{
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        #submit-div {
+            margin: 50px auto 0 auto;
+        }
+        select {
+            width: 300px;
+            margin: 20px auto;
+            display: block;
+            padding: 10px;
+        }
+        #url-copy-div {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-container">
+        <div class="center">
+            {{!-- <div id="url-div">
+                Votre URL
+                <p id="url-container">
+                    <a id="url"> - </a>
+                </p>
+            </div> --}}
+            <form onSubmit="formSubmit(event); return true;" id="form">
+                <div id="inputs">
+                    <label for="firstname">Prénom</label>
+                    <input required type="text" id="firstname" name="firstname" value="{{profile.firstname}}" autocomplete="given-name" onchange="formUpdate()">
+                    
+                    <label for="lastname">Nom</label>
+                    <input required type="text" id="lastname" name="lastname" value="{{profile.lastname}}" autocomplete="family-name" onchange="formUpdate()">
+                    
+                    <label for="birthday">Date de naissance</label>
+                    <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="text" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday" onchange="formUpdate()"> 
+
+                    <label for="placeofbirth">Lieu de naissance</label>
+                    <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
+
+                    <label for="address">Adresse</label>
+                    <input required id="address" name="address" placeholder="12 rue des Lilas" type="text" value="{{profile.address}}" autocomplete="street-address">
+
+                    <label for="zipcode">Code postal</label>
+                    <input required id="zipcode" name="zipcode" placeholder="33000" type="text" value="{{profile.zipcode}}" autocomplete="postal-code">
+
+                    <label for="city">Ville</label>
+                    <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}" autocomplete="off">
+
+                    <label for="firstname">Raisons</label><br>
+                </div>
+
+                <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
+                    {{#each available_reasons}}
+                        <option value="{{this.code}}">{{this.code}}</option> 
+                        {{!-- this.label --}}
+                    {{/each}}
+                </select>
+                
+                {{!-- <div id="submit-div">
+                    L'URL générée permettra de générer automatiquement une attestation
+                    datée et remplie:
+                    <input type="submit" value="Attestation"><br>
+                </div> --}}
+            </form> 
+            Vous pouvez utiliser l'URL suivante pour générer 
+            des attestation datées automatiquement. 
+            
+            <div id="url-copy-div" class="center">
+                <button class="btn" data-clipboard-target="#url">
+                    Copier l'URL <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                </button>
+            </div>
+
+            <p id="url-container">
+                Aperçu de l'URL :
+                <a id="url"> - </a>
+            </p>
+        </div>
+    </div>
+</body>
+
+<script>
+    new ClipboardJS('.btn');
+    const BASE_URL = window.location.origin;
+    const ENDPOINT = '/get';
+    const form = document.getElementById("form");
+    onFormChange();
+    form.addEventListener("input", onFormChange);
+
+    function formSubmit(event){
+        const url = buildURL();
+        window.open();
+        event.preventDefault();
+    }
+
+    function onFormChange(){
+        const url = buildURL();
+        console.log(url);
+        document.getElementById('url').setAttribute('href', url);
+        document.getElementById('url').innerHTML = url;
+    }
+
+    function buildURL(){
+        const params = {
+            'firstname': value('firstname'),
+            'lastname': value('lastname'),
+            'birthday': value('birthday'),
+            'placeofbirth': value('placeofbirth'),
+            'address': value('address'),
+            'zipcode': value('zipcode'),
+            'city': value('city'),
+            'reasons': getSelectValues(document.getElementById('reasons')),
+        }
+        const paramString = new URLSearchParams(params)
+        return `${BASE_URL}${ENDPOINT}?${paramString.toString()}`;
+    }
+
+    function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("myInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+    }
+
+    function value(id){
+        return document.getElementById(id).value;
+    }
+
+    function getSelectValues(select) {
+        const result = [];
+        const options = select && select.options;
+        let opt;
+        for (var i=0, iLen=options.length; i<iLen; i++) {
+            opt = options[i];
+
+            if (opt.selected) {
+                result.push(opt.value || opt.text);
+            }
+        }
+        return result;
+    }
+</script>
+
+</html>
