@@ -2,11 +2,12 @@ import fetch from "node-fetch";
 import server from 'server';
 import { getCertificates, getCertificate, certificatePDF } from './certificates';
 import { getProfile, profile as computeProfile } from './config';
-import { Blob } from 'blob-polyfill';
+import blobPolyfill from 'blob-polyfill';
 
 global.fetch = fetch;
 const { get, post } = server.router;
 const { send, json, type } = server.reply;
+const { Blob } = blobPolyfill;
 
 
 server({ port: 8080 }, [
