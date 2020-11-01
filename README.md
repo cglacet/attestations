@@ -24,6 +24,20 @@ user: votre.email.d.envoi@gmail.com
 pass: abcdefghijklmnop
 ```
 
+## Heroku
+
+```bash
+$ brew install heroku/brew/heroku
+$ heroku login
+$ heroku create
+$ heroku apps:rename cglacet-attestation
+$ heroku config:set CERTIFICATE_EMAIL_USER=cglacet.attestation@gmail.com CERTIFICATE_EMAIL_PASS=abcdefghijklmnop
+$ git push heroku heroku:master
+```
+
+Les deux endpoints sont `certificates?reasons=travail` et `certificate?name=christian?reasons=travail`.
+
+
 ## TODO
 
 - [ ] Plusieurs domiciles (avec ref vers le nom du domicile pour chaque personne)

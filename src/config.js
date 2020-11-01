@@ -18,7 +18,7 @@ const TRANSLATION_RULES = new Map([
 const YAML_CONFIG_FILE = './config.yml';
 const CONFIG = yaml.safeLoad(fs.readFileSync(YAML_CONFIG_FILE, 'utf8'));
 
-const DEFAULT_MAIL_PWD = 'abcdefghijklmnop';
+export const DEFAULT_MAIL_PWD = 'abcdefghijklmnop';
 const YAML_MAIL_CONFIG_FILE = './mail-config.yml';
 let MAIL_CONFIG = yaml.safeLoad(fs.readFileSync(YAML_MAIL_CONFIG_FILE, 'utf8'));
 export let MAIL_AVAILABLE = true;

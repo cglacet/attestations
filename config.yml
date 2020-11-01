@@ -6,7 +6,7 @@ gens:
     nom: glacet
     date_naissance: 31/07/1986
     lieu_naissance: Seine St. Denis
-    email: christian.glacet@gmail.com #mon.email@gmail.com
+    # email: christian.glacet@gmail.com #mon.email@gmail.com
 
   - prénom: carole
     nom: lancuentra

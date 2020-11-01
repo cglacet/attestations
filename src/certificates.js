@@ -21,13 +21,12 @@ export async function getCertificate(profile, reasons){
             [profile['lastname']]: `Email envoyé à ${profile['email']} !`,
         };
     }
-    else {
+    else { 
         return {
             [profile['lastname']]: 'Email manquant, renseignez le champ email dans le fichier de configuration',
         };
     }
 }
-
 export async function writeCertificate(profile, reasons){
     const pdf = await certificatePDF(profile, reasons);
     fs.writeFile(pdfName(profile), pdf, doneGenerating(profile));

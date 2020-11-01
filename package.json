@@ -3,14 +3,9 @@
   "version": "1.0.0",
   "description": "Generer des attestation nov 2020",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "local": "babel-node src/index.js",
-    "help": "babel-node src/help.js",
-    "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel",
-    "start": "npm run build && node ./build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --experimental-modules --es-module-specifier-resolution=node src/index.js"
   },
   "keywords": [
     "covid",
@@ -20,14 +15,10 @@
   "author": "christian glacet",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1"
+    "@babel/node": "^7.12.1"
   },
   "dependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/runtime": "^7.12.1",
+    "blob-polyfill": "^4.0.20200601",
     "dateformat": "^3.0.3",
     "js-yaml": "^3.14.0",
     "node-fetch": "^2.6.1",
