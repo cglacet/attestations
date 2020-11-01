@@ -2,6 +2,9 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import dateFormat from 'dateformat';
 
+const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
+export const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
+
 const TRANSLATION_RULES = new Map([
     ['nom', 'lastname'],
     ['prénom', 'firstname'],
@@ -26,22 +29,39 @@ if (MAIL_CONFIG['pass'] == DEFAULT_MAIL_PWD){
     MAIL_AVAILABLE = false;
 }
 
-export const reasons = CONFIG['raisons'];
+export const REASONS = CONFIG['raisons'];
 export const mailAuth = MAIL_CONFIG;
 
+
+const PROFILES = new Map();
+const PLACE = CONFIG['lieux']['maison'];
+
+for (const person of CONFIG['gens']){
+    const content = {
+        ...translate(person),
+        ...translate(PLACE),
+    }
+    PROFILES.set(content['firstname'], content)
+}
+
 export function* profiles(){
-    const place = CONFIG['lieux']['maison'];
-    const now = new Date();
-    for (const people of CONFIG['gens']){
-        yield {
-            ...translate(people),
-            ...translate(place),
-            'heuresortie': dateFormat(now, 'HH:MM'),
-            'datesortie': dateFormat(now, 'dd/mm/yyyy'),
-        }
+    for (const person of PROFILES.values()){
+        yield profile(person);
     }
 }
 
+export function getProfile(firstname){
+    return profile(PROFILES.get(firstname));
+}
+
+export function profile(person){
+    const now = new Date();
+    return {
+        ...person,
+        'heuresortie': dateFormat(now, 'HH:MM'),
+        'datesortie': dateFormat(now, 'dd/mm/yyyy'),
+    }
+}
 
 function translate(object){
     return mapObject(([k, v]) => [TRANSLATION_RULES.get(k) || k, v], object);

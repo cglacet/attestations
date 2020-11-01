@@ -2,23 +2,23 @@ raisons:
   - achats
 
 gens:
-  - prénom: Prenom 1
-    nom: Nom 1
-    date_naissance: jj/mm/yyyy
-    lieu_naissance: Ville de naissance 1
+  - prénom: christian
+    nom: glacet
+    date_naissance: 31/07/1986
+    lieu_naissance: Seine St. Denis
     email: christian.glacet@gmail.com #mon.email@gmail.com
 
-  - prénom: Prenom 2
-    nom: Nom 2
-    date_naissance: jj/mm/yyyy
-    lieu_naissance: Ville de naissance personne 2
+  - prénom: carole
+    nom: lancuentra
+    date_naissance: 12/03/1989
+    lieu_naissance: Talence
     # email: mon.autre.email@gmail.com
 
 lieux:
   maison:
-    adresse: votre adresse
-    code_postal: code postal
-    ville: Ville de résidence
+    adresse: 48 rue Camille Pelletan, bat. B, apt. 45
+    code_postal: 33400
+    ville: Talence
 
 
 # Pas utilisé, juste pour faire des copier-coller: 

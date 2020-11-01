@@ -1,55 +1,34 @@
-import fs from 'fs';
-import { generatePdf } from './pdf-util';
-import { profiles, reasons, MAIL_AVAILABLE } from './config';
-import { attestationMail } from './mail';
-
 global.fetch = require("node-fetch");
-const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
-const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
+import server from 'server';
+import { getCertificates, getCertificate } from './certificates';
+import { getProfile } from './config';
 
-async function generateAll(){
-    for (const profile of profiles()){
-        generateFor(profile);
+
+const { get, post } = server.router;
+const { download, json } = server.reply;
+
+
+server({ port: 8080 }, [
+    get('/certificate', certificate),
+    get('/certificates', certificates)
+]);
+
+
+async function certificate(context){
+    try {
+        const profile = getProfile(context.query.name);
+        return await getCertificate(profile, context.query.reasons.split(','));
+    }
+    catch (error){
+        return {'error': `${error}`};
     }
 }
 
-async function generateFor(profile){
-    const pdf = await generatePdf(profile, reasons.join(', '), PDF_BASE);
-    if (MAIL_AVAILABLE && profile['email']){
-        console.log(`Envoi de l'autorisation par mail à ${profile['email']} en cours ...`);
-        attestationMail(profile['email'], mailTitle(profile), mailAttachments(profile, pdf));
+async function certificates(context){
+    try {
+        return await getCertificates(context.query.reasons.split(','));
     }
-    else {
-        fs.writeFile(pdfName(profile), pdf, doneGenerating(profile));
+    catch (error){
+        return "Error";
     }
 }
-
-
-function pdfName(profile){
-    const name = `${profile['firstname']}_${profile['lastname']}`;
-    const date = `${profile['datesortie'].replace(/\//g, '-')}_${profile['heuresortie'].replace(':', 'h')}`;
-    return `${name}_${date}.pdf`;
-}
-
-function mailAttachments(profile, pdf){
-    return [
-        {
-            filename: pdfName(profile),
-            content: pdf, //new Buffer(pdf,'utf-8')
-        }
-    ]
-}
-
-function mailTitle(profile){
-    return `Attestation de sortie ${profile['datesortie']} à ${profile['heuresortie']}`;
-}
-
-function doneGenerating(profile){
-    function onDone(){
-        console.log(`\nFichier d'autorisation de sortie pour ${profile['firstname']}:`);
-        console.log(`\t ${pdfName(profile)}`);
-    }
-    return onDone;
-}
-
-generateAll();

@@ -10,7 +10,7 @@ async function createTransporter(){
     });
 }
 
-export async function attestationMail(to, text, attachments){
+export async function certificateMail(to, text, attachments){
     const transporter = await TRANSPORTER_PROMISE;
     let info = await transporter.sendMail({
         to,
