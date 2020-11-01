@@ -62,8 +62,8 @@ export function* profiles(){
     }
 }
 
-export function getProfile(firstname){
-    return profile(PROFILES.get(firstname));
+export function getProfile(firstname, delay){
+    return profile(PROFILES.get(firstname), delay);
 }
 
 export function profile(person, delay){
