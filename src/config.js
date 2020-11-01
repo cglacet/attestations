@@ -20,13 +20,25 @@ const CONFIG = yaml.safeLoad(fs.readFileSync(YAML_CONFIG_FILE, 'utf8'));
 
 const DEFAULT_MAIL_PWD = 'abcdefghijklmnop';
 const YAML_MAIL_CONFIG_FILE = './mail-config.yml';
-const MAIL_CONFIG = yaml.safeLoad(fs.readFileSync(YAML_MAIL_CONFIG_FILE, 'utf8'));
+let MAIL_CONFIG = yaml.safeLoad(fs.readFileSync(YAML_MAIL_CONFIG_FILE, 'utf8'));
 export let MAIL_AVAILABLE = true;
 
 if (MAIL_CONFIG['pass'] == DEFAULT_MAIL_PWD){
+    MAIL_AVAILABLE = false;
+}
+
+// heroku config:set CERTIFICATE_EMAIL_USER=cglacet.attestation@gmail.com CERTIFICATE_EMAIL_PASS=abcdefghijklmnop
+if (!MAIL_AVAILABLE){
+    MAIL_CONFIG = {
+        'user': process.env.CERTIFICATE_EMAIL_USER,
+        'pass': process.env.CERTIFICATE_EMAIL_PASS,
+    }
+    MAIL_AVAILABLE = true;
+}
+
+if (!MAIL_AVAILABLE){
     console.error("Vous n'avez pas configuré vos identifiants pour l'envoi automatique d'emails (dans le fichier 'mail-config.yml').");
     console.error("Aucun mail ne sera envoyé et les fichiers seront simplement sauvegardés localement.");
-    MAIL_AVAILABLE = false;
 }
 
 export const REASONS = CONFIG['raisons'];
