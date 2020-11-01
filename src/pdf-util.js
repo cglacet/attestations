@@ -1,5 +1,6 @@
 import { generateQR } from './util'
-import { PDFDocument, StandardFonts } from 'pdf-lib'
+import pdfLib from 'pdf-lib'
+const { PDFDocument, StandardFonts } = pdfLib;
 
 const ys = {
   travail: 578,
