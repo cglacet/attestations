@@ -1,6 +1,5 @@
 import yaml from 'js-yaml';
 import fs from 'fs';
-import dateFormat from 'dateformat';
 
 const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
 export const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
@@ -66,12 +65,12 @@ export function getProfile(firstname){
     return profile(PROFILES.get(firstname));
 }
 
-export function profile(person){
-    const now = new Date();
+export function profile(person, delay){
+    const date = (delay != undefined) ? new Date(Date.now() + 60000 * parseFloat(delay)) : new Date();
     return {
         ...person,
-        'heuresortie': dateFormat(now, 'HH:MM'),
-        'datesortie': dateFormat(now, 'dd/mm/yyyy'),
+        'heuresortie': date.toLocaleDateString('fr-FR', { timeZone: "Europe/Paris" }),
+        'datesortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris" }),
     }
 }
 
