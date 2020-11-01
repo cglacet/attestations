@@ -13,7 +13,7 @@ server({ port: 8080 }, [
     // Endpoints that use the built-in config file:
     get('/certificate', certificate),
     get('/certificate-download', certificateDownload),
-    get('/certificates', certificates)
+    get('/certificates', certificates),
     // Public endpoints, no config
     get('/get', certificateNoConfig),
 ]);
