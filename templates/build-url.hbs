@@ -26,14 +26,16 @@
             overflow-wrap: anywhere;
             margin: 30px 0;
         }
-        #box {
-            width: 80%; 
-            max-width: 800px; 
-            margin: 30px auto; 
-            background-color: #FFFFFF;
-            border-radius: 5px;
-            padding: 30px;
-            box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
+        @media screen {
+            #box {
+                width: 80%; 
+                max-width: 800px; 
+                margin: 30px auto; 
+                background-color: #FFFFFF;
+                border-radius: 5px;
+                padding: 30px;
+                box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
+            }
         }
         #box-content {
             display:grid;
@@ -53,6 +55,10 @@
         }
         .qrcode-div h2 {
             text-align: center;
+            margin: 0
+        }
+        .qrcode-div p {
+            margin: 0;
         }
         .center {
             margin: 0 auto;
@@ -91,6 +97,26 @@
             margin-top: 30px;
             margin-bottom: 30px;
         }
+        @media print {
+            html {
+                background-color: white;
+                width: 21cm;
+                height: 29.7cm;
+            }
+            #form-part{
+                display: none;
+            }
+            #box-content {
+                display: block;
+                display: flex;
+                flex-direction: column;
+                justify-content: stretch;
+            }
+            body, #box, #box-content, #qrcodes-container {
+                height: 100%;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -98,7 +124,7 @@
     <div id="box">
         <h1>Attestations faciles</h1>
         <div id="box-content">
-            <div class="center">
+            <div id="form-part" class="center">
                 {{!-- <div id="url-div">
                     Votre URL
                     <p id="url-container">
@@ -167,12 +193,14 @@
             </div>
             <div id="qrcodes-container">
                 <div class="qrcode-div">
-                    <h2>Cette page</h2>
-                    <canvas id="qrcode-get"></canvas>
+                    <h2>Générer vos attestations</h2>
+                    <p>(<span id="reasons-list"></span>)</p>
+                    <canvas id="qrcode-set"></canvas>
                 </div>
                 <div class="qrcode-div">
-                    <h2>Générer des attestations</h2>
-                    <canvas id="qrcode-set"></canvas>
+                    <h2>Cette page</h2>
+                    <p>(si vous voulez plus tard modifier vos options)</p>
+                    <canvas id="qrcode-get"></canvas>
                 </div>
             </div>
         </div>
@@ -198,6 +226,13 @@
         const urlSet = buildURL('set');
         document.getElementById('url').setAttribute('href', urlGet);
         document.getElementById('url').innerHTML = urlGet;
+        const reasons = getSelectValues(document.getElementById('reasons'));
+        if (reasons && reasons.length > 0){
+            document.getElementById('reasons-list').innerHTML = reasons.join(', ');
+        }
+        else {
+            document.getElementById('reasons-list').innerHTML = "Aucune raison !"
+        }
         QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet);
         QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet);
     }
