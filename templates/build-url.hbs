@@ -140,6 +140,9 @@
         else {
             fillURLsAndQRCode(QR_CODE_OPTIONS_ERROR);
         }
+        if (window.history.replaceState) {
+            window.history.replaceState(`${BASE_URL}/set`, document.title, buildURL('set'));
+        }
     }
 
     function fillURLsAndQRCode(options){
