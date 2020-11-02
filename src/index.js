@@ -4,11 +4,24 @@ import { getCertificates, getCertificate, certificatePDF } from './certificates'
 import { getProfile, profile as computeProfile } from './config';
 import { reasonFields } from './help';
 import blobPolyfill from 'blob-polyfill';
+import hbs from 'hbs';
 
 global.fetch = fetch;
 const { get, post } = server.router;
 const { send, json, type, render } = server.reply;
 const { Blob } = blobPolyfill;
+
+
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+hbs.registerHelper('ifIn', function(arg1, arg2, options) {
+    if (arg2 && arg2.includes(arg1)){
+        return options.fn(this)
+    }
+    return options.inverse(this);
+});
 
 
 server({ port: 8080 }, [

@@ -14,6 +14,10 @@
             background-color: #F1F4FB;
             margin: 0;
         }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
         #url-div {
             border-bottom: 1px solid #444;
             margin-bottom: 50px;
@@ -22,14 +26,33 @@
             overflow-wrap: anywhere;
             margin: 30px 0;
         }
-        #form-container {
-            width: 50%; 
-            max-width: 400px; 
-            margin: 0 auto; 
+        #box {
+            width: 80%; 
+            max-width: 800px; 
+            margin: 30px auto; 
             background-color: #FFFFFF;
             border-radius: 5px;
-            padding: 50px;
+            padding: 30px;
             box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
+        }
+        #box-content {
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 20px;
+        }
+        #qrcodes-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .qrcode-div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .qrcode-div h2 {
+            text-align: center;
         }
         .center {
             margin: 0 auto;
@@ -37,19 +60,18 @@
         #inputs {
             display:grid;
             grid-template-columns: max-content 1fr;
-            grid-gap:5px;
+            grid-gap: 0px;
+            row-gap: 10px;
         }
         label {
             font-weight: bolder;
             color: cornflowerblue;
             text-align: right;
             margin: auto 20px auto 0;
+            padding: 5px;
         }
         input {
-            margin-bottom: 10px;
-            margin-top: 5px;
-            width: 90%;
-            padding: 10px 5px;
+            padding: 5px;
         }
         input[type=text]{
             border: none;
@@ -73,92 +95,114 @@
 </head>
 
 <body>
-    <div id="form-container">
-        <div class="center">
-            {{!-- <div id="url-div">
-                Votre URL
-                <p id="url-container">
-                    <a id="url"> - </a>
-                </p>
-            </div> --}}
-            <form onSubmit="formSubmit(event); return true;" id="form">
-                <div id="inputs">
-                    <label for="firstname">Prénom</label>
-                    <input required type="text" id="firstname" name="firstname" value="{{profile.firstname}}" autocomplete="given-name" onchange="formUpdate()">
+    <div id="box">
+        <h1>Attestations faciles</h1>
+        <div id="box-content">
+            <div class="center">
+                {{!-- <div id="url-div">
+                    Votre URL
+                    <p id="url-container">
+                        <a id="url"> - </a>
+                    </p>
+                </div> --}}
+                <form onSubmit="formSubmit(event); return true;" id="form">
+                    <div id="inputs">
+                        <label for="firstname">Prénom</label>
+                        <input required type="text" id="firstname" name="firstname" value="{{profile.firstname}}" autocomplete="given-name">
+                        
+                        <label for="lastname">Nom</label>
+                        <input required type="text" id="lastname" name="lastname" value="{{profile.lastname}}" autocomplete="family-name">
+                        
+                        <label for="birthday">Date de naissance</label>
+                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="text" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday"> 
+
+                        <label for="placeofbirth">Lieu de naissance</label>
+                        <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
+
+                        <label for="address">Adresse</label>
+                        <input required id="address" name="address" placeholder="12 rue des Lilas" type="text" value="{{profile.address}}" autocomplete="street-address">
+
+                        <label for="zipcode">Code postal</label>
+                        <input required id="zipcode" name="zipcode" placeholder="33000" type="text" value="{{profile.zipcode}}" autocomplete="postal-code">
+
+                        <label for="city">Ville</label>
+                        <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}" autocomplete="off">
+
+                        <label for="firstname">Raisons</label><br>
+                    </div>
+
+                    <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
+                        {{#each available_reasons}}
+                            <option 
+                                value="{{this.code}}"
+                                {{#ifIn this.code ../profile.reasons}}
+                                    selected
+                                {{/ifIn}}
+                            >
+                                {{this.code}}
+                                {{!-- this.label --}}
+                            </option> 
+                        {{/each}}
+                    </select>
                     
-                    <label for="lastname">Nom</label>
-                    <input required type="text" id="lastname" name="lastname" value="{{profile.lastname}}" autocomplete="family-name" onchange="formUpdate()">
-                    
-                    <label for="birthday">Date de naissance</label>
-                    <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="text" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday" onchange="formUpdate()"> 
-
-                    <label for="placeofbirth">Lieu de naissance</label>
-                    <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
-
-                    <label for="address">Adresse</label>
-                    <input required id="address" name="address" placeholder="12 rue des Lilas" type="text" value="{{profile.address}}" autocomplete="street-address">
-
-                    <label for="zipcode">Code postal</label>
-                    <input required id="zipcode" name="zipcode" placeholder="33000" type="text" value="{{profile.zipcode}}" autocomplete="postal-code">
-
-                    <label for="city">Ville</label>
-                    <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}" autocomplete="off">
-
-                    <label for="firstname">Raisons</label><br>
+                    {{!-- <div id="submit-div">
+                        L'URL générée permettra de générer automatiquement une attestation
+                        datée et remplie:
+                        <input type="submit" value="Attestation"><br>
+                    </div> --}}
+                </form> 
+                Vous pouvez utiliser l'URL suivante pour générer 
+                des attestation datées automatiquement. 
+                
+                <div id="url-copy-div" class="center">
+                    <button class="btn" data-clipboard-target="#url">
+                        Copier URL <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                    </button>
                 </div>
 
-                <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
-                    {{#each available_reasons}}
-                        <option value="{{this.code}}">{{this.code}}</option> 
-                        {{!-- this.label --}}
-                    {{/each}}
-                </select>
-                
-                {{!-- <div id="submit-div">
-                    L'URL générée permettra de générer automatiquement une attestation
-                    datée et remplie:
-                    <input type="submit" value="Attestation"><br>
-                </div> --}}
-            </form> 
-            Vous pouvez utiliser l'URL suivante pour générer 
-            des attestation datées automatiquement. 
-            
-            <div id="url-copy-div" class="center">
-                <button class="btn" data-clipboard-target="#url">
-                    Copier l'URL <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
-                </button>
+                <p id="url-container">
+                    URL : 
+                    <a id="url"> - </a>
+                </p>
             </div>
-
-            <p id="url-container">
-                Aperçu de l'URL :
-                <a id="url"> - </a>
-            </p>
+            <div id="qrcodes-container">
+                <div class="qrcode-div">
+                    <h2>Cette page</h2>
+                    <canvas id="qrcode-get"></canvas>
+                </div>
+                <div class="qrcode-div">
+                    <h2>Générer des attestations</h2>
+                    <canvas id="qrcode-set"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 
-<script>
+<script src="../static/qrcode.js"></script>
+<script type="text/javascript">
     new ClipboardJS('.btn');
     const BASE_URL = window.location.origin;
-    const ENDPOINT = '/get';
     const form = document.getElementById("form");
     onFormChange();
     form.addEventListener("input", onFormChange);
 
     function formSubmit(event){
-        const url = buildURL();
+        const url = buildURL('get');
         window.open();
         event.preventDefault();
     }
 
     function onFormChange(){
-        const url = buildURL();
-        console.log(url);
-        document.getElementById('url').setAttribute('href', url);
-        document.getElementById('url').innerHTML = url;
+        const urlGet = buildURL('get');
+        const urlSet = buildURL('set');
+        document.getElementById('url').setAttribute('href', urlGet);
+        document.getElementById('url').innerHTML = urlGet;
+        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet);
+        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet);
     }
 
-    function buildURL(){
+    function buildURL(endpoint){
         const params = {
             'firstname': value('firstname'),
             'lastname': value('lastname'),
@@ -170,7 +214,7 @@
             'reasons': getSelectValues(document.getElementById('reasons')),
         }
         const paramString = new URLSearchParams(params)
-        return `${BASE_URL}${ENDPOINT}?${paramString.toString()}`;
+        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
     }
 
     function myFunction() {
