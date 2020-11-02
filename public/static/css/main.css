@@ -19,6 +19,7 @@ h1 {
 }
 @media screen {
     #box {
+        position: relative;
         width: 80%;
         max-width: 800px;
         margin: 30px auto;
@@ -26,6 +27,22 @@ h1 {
         border-radius: 5px;
         padding: 30px;
         box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
+    }
+    #github {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 15px;
+    }
+    #github a {
+        text-decoration: none;
+        color: blueviolet;
+        font-weight: bold;
+        display: flex;
+        align-items:center;
+    }
+    #github svg {
+        fill: blueviolet;
     }
 }
 #box-content {
@@ -95,7 +112,7 @@ select {
         width: 21cm;
         height: 29.7cm;
     }
-    #form-part {
+    #form-part, #github {
         display: none;
     }
     #box-content {
