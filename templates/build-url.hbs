@@ -86,7 +86,7 @@
                     Générez des attestations grâce à <br><a id="url">votre générateur d'attestations</a>
                 </p>
                 <div id="url-copy-div" class="center">
-                    <button class="btn" data-clipboard-target="#url">
+                    <button id="url-clipboard" class="btn" data-clipboard-text="">
                         Copier l'adresse du générateur <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
                     </button>
                 </div>
@@ -116,6 +116,7 @@
     new ClipboardJS('.btn');
     const BASE_URL = window.location.origin;
     const form = document.getElementById("form");
+    const MESSAGE_INCOMPLETE = "Vous n'avez pas fini de remplir le formulaire";
     const QR_CODE_OPTIONS = {
         color: {
             dark:"#000",
@@ -139,27 +140,25 @@
     }
 
     function onFormChange(){
-        if (areRequiredFilled()){
-            fillURLsAndQRCode(QR_CODE_OPTIONS);
+        const urlGet = buildURL('get');
+        const urlSet = buildURL('set');
+
+        let QRCodeOptions = QR_CODE_OPTIONS;
+        if (!areRequiredFilled()){
+            QRCodeOptions = QR_CODE_OPTIONS_ERROR
+            document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlSet);
         }
         else {
-            fillURLsAndQRCode(QR_CODE_OPTIONS_ERROR);
+            document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlGet);
         }
-        if (window.history.replaceState) {
-            window.history.replaceState(`${BASE_URL}/set`, document.title, buildURL('set'));
-        }
-    }
 
-    function fillURLsAndQRCode(options){
-        const urlGet = buildURL('get');
         document.getElementById('url').setAttribute('href', urlGet);
         document.getElementById('url-top').setAttribute('href', urlGet);
         document.getElementById('url-get').setAttribute('href', urlGet);
-        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet, options);
-
-        const urlSet = buildURL('set');
         document.getElementById('url-set').setAttribute('href', urlSet);
-        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet, options);
+
+        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet, QRCodeOptions);
+        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet, QRCodeOptions);
 
         const reasons = getSelectValues(document.getElementById('reasons'));
         if (reasons && reasons.length > 0){
@@ -168,6 +167,13 @@
         else {
             document.getElementById('reasons-list').innerHTML = "Aucune raison !"
         }
+
+        if (window.history.replaceState) {
+            window.history.replaceState(`${BASE_URL}/set`, document.title, urlSet);
+        }
+    }
+
+    function fillURLsAndQRCode(options){
     }
 
     function buildURL(endpoint){
