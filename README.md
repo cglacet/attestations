@@ -1,48 +1,59 @@
 # Des attestations en quelques secondes
 
-À lancer la première fois:
+Ce code permet remplir des attestations de sortie en :
+
+* sauvegardant une URL dans vos favoris
+* scannant un QR code
+
+Une démo hébergée sur une version gratuite 
+d'Heroku est [disponible ici][heroku demo].
+
+En utilisant cette page web vous pouvez directement cliquer sur 
+le lien pour générer une attestation, ce lien permettra de 
+créer autant d'attestation que nécessaire (pour la raison 
+sélectionne). Date et heures de sorties seront générées 
+dynamiquement.
+
+![Génération d'attestation par lien direct](doc/img/link.gif)
+
+Vous pouvez aussi sauvegarder ces liens en imprimant des QR codes.
+
+![Génération d'attestation par QR code](doc/img/print.gif)
+
+## Travailler sur ce projet 
+
+À lancer la première fois :
 
 ```bash
-$ git clone git@github.com:cglacet/attestations.git
+$ git clone -b heroku git@github.com:cglacet/attestations.git
 $ cd attestations
 $ npm install
 ```
 
-Puis pour générer des attestations: 
+Puis pour lancer le serveur :
 
 ```bash
-npm start -s
+npm start
 ```
 
-Pour configurer les attestations il suffit d'éditer le fichier [config.yml](config.yml).
-Pour activer l'envoi d'emails automatiques il faut utiliser votre 
-email avec un [mot de passe pour application][gmail app pwd] et éditer le 
-fichier [mail-config.yml](mail-config.yml):
+Il suffit ensuite de vous rendre à sur [http://localhost:8080/set][local url].
 
-```yaml
-user: votre.email.d.envoi@gmail.com
-pass: abcdefghijklmnop
-```
-
-## Heroku
+## Publier sur Heroku
 
 ```bash
 $ brew install heroku/brew/heroku
 $ heroku login
 $ heroku create
-$ heroku apps:rename cglacet-attestation
-$ heroku config:set CERTIFICATE_EMAIL_USER=cglacet.attestation@gmail.com CERTIFICATE_EMAIL_PASS=abcdefghijklmnop
+$ heroku apps:rename <insert a name you like here>
 $ git push heroku heroku:master
 ```
-
-Les deux endpoints sont `certificates?reasons=travail` et `certificate?name=christian?reasons=travail`.
-
 
 ## TODO
 
 - [ ] Plusieurs domiciles (avec ref vers le nom du domicile pour chaque personne)
-- [ ] Ajouter un délai (eg., sortie dans 1h)
-- [ ] Rendre accessible en ligne avec un DL à la place de l'envoi de mail (comment faire pour le fichier de config? Une URL?)
+- [x] Ajouter un délai (eg., sortie dans 1h)
+- [x] Rendre accessible en ligne avec un DL à la place de l'envoi de mail (comment faire pour le fichier de config? Une URL?)
+- [ ] Mettre tout le code coté client (chiant à mettre à jour si l'attestation change)?
 
 ## Refs
 
@@ -64,3 +75,7 @@ Mais il utilise également le [fichier PDF][certificate.pdf] "de base" qui est e
 [pdf-util.js]: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/main/src/js/pdf-util.js
 [util.js]: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/main/src/js/util.js
 [certificate.pdf]: https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/main/src/certificate.pdf
+
+[heroku]: https://dashboard.heroku.com/
+[heroku demo]: https://cglacet-attestation.herokuapp.com/set?firstname=Pr%C3%A9nom&lastname=Nom&birthday=31%2F07%2F1986&placeofbirth=Paris&address=12+rue+des+Lilas&zipcode=33000&city=Bordeaux&reasons=travail
+[local url]: http://localhost:8080/set?firstname=Pr%C3%A9nom&lastname=Nom&birthday=31%2F07%2F1986&placeofbirth=Paris&address=12+rue+des+Lilas&zipcode=33000&city=Bordeaux&reasons=travail
