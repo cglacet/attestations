@@ -77,7 +77,8 @@
             padding: 5px;
         }
         input {
-            padding: 5px;
+            padding: 5px;    
+            width: 90%;
         }
         input[type=text]{
             border: none;
@@ -115,6 +116,15 @@
             body, #box, #box-content, #qrcodes-container {
                 height: 100%;
                 width: 100%;
+            }
+        }
+        @media only screen and 
+            (min-width: 320px), 
+            (min-width: 481px),
+            (min-width: 641px),
+        {
+            #qrcodes-container {
+                display: none;
             }
         }
     </style>
