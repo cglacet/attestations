@@ -111,7 +111,7 @@ input {
     padding: 5px;
     width: 100%;
 }
-input[type="text"] {
+input[type="text"], input[type="date"] {
     border: none;
     border-bottom: 1px solid black;
 }

@@ -46,7 +46,7 @@
                         <input required type="text" id="lastname" name="lastname" placeholder="Nom" value="{{profile.lastname}}" autocomplete="family-name">
                         
                         <label for="birthday">Date de naissance</label>
-                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="text" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday"> 
+                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="date" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday"> 
 
                         <label for="placeofbirth">Lieu de naissance</label>
                         <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
@@ -173,14 +173,11 @@
         }
     }
 
-    function fillURLsAndQRCode(options){
-    }
-
     function buildURL(endpoint){
         const params = {
             'firstname': value('firstname'),
             'lastname': value('lastname'),
-            'birthday': value('birthday'),
+            'birthday': toFrenchDate(value('birthday')),
             'placeofbirth': value('placeofbirth'),
             'address': value('address'),
             'zipcode': value('zipcode'),
@@ -189,6 +186,17 @@
         }
         const paramString = new URLSearchParams(params)
         return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+    }
+
+    function toFrenchDate(yyyy_mm_dd){
+        try {
+            const [yyyy, mm, dd] = yyyy_mm_dd.split('-');
+            return `${dd}/${mm}/${yyyy}`;
+        }
+        catch (e) {
+            console.log("Error", e);
+            return yyyy_mm_dd;
+        }
     }
 
     function areRequiredFilled() {

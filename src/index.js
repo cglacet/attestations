@@ -23,7 +23,6 @@ hbs.registerHelper('ifIn', function(arg1, arg2, options) {
     return options.inverse(this);
 });
 
-
 server({ port: 8080 }, [
     // Endpoints that use the built-in config file:
     // get('/certificate', certificate),
@@ -98,5 +97,18 @@ async function buildURL(context){
     if (!options.profile.reasons || options.profile.reasons.length < 1){
         options.profile.reasons = ['travail']
     }
+    options.profile.birthday = fromFrenchDate(options.profile.birthday);
     return render('../templates/build-url.hbs', options);
+}
+
+
+function fromFrenchDate(dd_mm_yyyy){
+    try {
+        const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+    catch (e) {
+        console.log("Error", e);
+        return dd_mm_yyyy;
+    }
 }
