@@ -74,7 +74,7 @@ export function profile(person, delay){
     return {
         ...person,
         'heuresortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris", hour12: false }),
-        'datesortie': date.toLocaleDateString('fr-FR', { timeZone: "Europe/Paris" }),
+        'datesortie': date.toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })
     }
 }
 
