@@ -29,10 +29,10 @@
                 <form onSubmit="formSubmit(event); return true;" id="form">
                     <div id="inputs">
                         <label for="firstname">Prénom</label>
-                        <input required type="text" id="firstname" name="firstname" value="{{profile.firstname}}" autocomplete="given-name">
+                        <input required type="text" id="firstname" name="firstname" placeholder="Prénom" value="{{profile.firstname}}" autocomplete="given-name">
                         
                         <label for="lastname">Nom</label>
-                        <input required type="text" id="lastname" name="lastname" value="{{profile.lastname}}" autocomplete="family-name">
+                        <input required type="text" id="lastname" name="lastname" placeholder="Nom" value="{{profile.lastname}}" autocomplete="family-name">
                         
                         <label for="birthday">Date de naissance</label>
                         <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="text" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday"> 
@@ -111,8 +111,21 @@
     new ClipboardJS('.btn');
     const BASE_URL = window.location.origin;
     const form = document.getElementById("form");
-    onFormChange();
+    const QR_CODE_OPTIONS = {
+        color: {
+            dark:"#000",
+            light:"#FFF"
+        }
+    }
+    const QR_CODE_OPTIONS_ERROR = {
+        color: {
+            dark:"#AAA",
+            light:"#FFF"
+        }
+    }
+
     form.addEventListener("input", onFormChange);
+    onFormChange();
 
     function formSubmit(event){
         const url = buildURL('get');
@@ -121,15 +134,24 @@
     }
 
     function onFormChange(){
+        if (areRequiredFilled()){
+            fillURLsAndQRCode(QR_CODE_OPTIONS);
+        }
+        else {
+            fillURLsAndQRCode(QR_CODE_OPTIONS_ERROR);
+        }
+    }
+
+    function fillURLsAndQRCode(options){
         const urlGet = buildURL('get');
         document.getElementById('url').setAttribute('href', urlGet);
         document.getElementById('url').innerHTML = urlGet;
         document.getElementById('url-get').setAttribute('href', urlGet);
-        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet);
+        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet, options);
 
         const urlSet = buildURL('set');
         document.getElementById('url-set').setAttribute('href', urlSet);
-        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet);
+        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet, options);
 
         const reasons = getSelectValues(document.getElementById('reasons'));
         if (reasons && reasons.length > 0){
@@ -154,6 +176,16 @@
         const paramString = new URLSearchParams(params)
         return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
     }
+
+    function areRequiredFilled() {
+        const form = document.getElementById('form');
+        for(const element of form.elements){
+            if(element.hasAttribute('required') && element.value == ''){
+                return false;
+            }
+        }
+        return true;
+    };
 
     function value(id){
         return document.getElementById(id).value;

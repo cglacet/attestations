@@ -94,5 +94,8 @@ async function buildURL(context){
         'profile': context.query, 
         'available_reasons': Array.from(reasonFields())
     }
+    if (!options.profile.reasons || options.profile.reasons.length < 1){
+        options.profile.reasons = ['travail']
+    }
     return render('../templates/build-url.hbs', options);
 }
