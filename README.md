@@ -14,11 +14,15 @@ créer autant d'attestation que nécessaire (pour la raison
 sélectionne). Date et heures de sorties seront générées 
 dynamiquement.
 
-![Génération d'attestation par lien direct](doc/img/link.gif)
+<center>
+    <img width=700 src=doc/img/link.gif alt="Génération d'attestation par lien direct">
+</center>
 
 Vous pouvez aussi sauvegarder ces liens en imprimant des QR codes.
 
-![Génération d'attestation par QR code](doc/img/print.gif)
+<center>
+    <img width=700 src=doc/img/print.gif alt="Génération d'attestation par QR code">
+</center>
 
 ## Travailler sur ce projet 
 
