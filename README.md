@@ -54,7 +54,7 @@ $ git push heroku heroku:master
 
 ## TODO
 
-- [ ] Plusieurs domiciles (avec ref vers le nom du domicile pour chaque personne)
+- [ ] Tester [svelte](https://svelte.dev/)
 - [x] Ajouter un délai (eg., sortie dans 1h)
 - [x] Rendre accessible en ligne avec un DL à la place de l'envoi de mail (comment faire pour le fichier de config? Une URL?)
 - [ ] Mettre tout le code coté client (chiant à mettre à jour si l'attestation change)?

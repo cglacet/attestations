@@ -5,129 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-   scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <title>Créer un lien pour générer une attestation</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-        html {
-            font-family: 'Lato', sans-serif;
-            background-color: #F1F4FB;
-            margin: 0;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        #url-div {
-            border-bottom: 1px solid #444;
-            margin-bottom: 50px;
-        }
-        #url-container {
-            overflow-wrap: anywhere;
-            margin: 30px 0;
-        }
-        @media screen {
-            #box {
-                width: 80%; 
-                max-width: 800px; 
-                margin: 30px auto; 
-                background-color: #FFFFFF;
-                border-radius: 5px;
-                padding: 30px;
-                box-shadow: 0px 2px 10px rgba(7, 23, 48, 0.4);
-            }
-        }
-        #box-content {
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: 20px;
-        }
-        #qrcodes-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        .qrcode-div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .qrcode-div h2 {
-            text-align: center;
-            margin: 0
-        }
-        .qrcode-div p {
-            margin: 0;
-        }
-        .center {
-            margin: 0 auto;
-        }
-        #inputs {
-            display:grid;
-            grid-template-columns: max-content 1fr;
-            grid-gap: 0px;
-            row-gap: 10px;
-        }
-        label {
-            font-weight: bolder;
-            color: cornflowerblue;
-            text-align: right;
-            margin: auto 20px auto 0;
-            padding: 5px;
-        }
-        input {
-            padding: 5px;    
-            width: 90%;
-        }
-        input[type=text]{
-            border: none;
-            border-bottom: 1px solid black;
-        }
-        #submit-div {
-            margin: 50px auto 0 auto;
-        }
-        select {
-            width: 300px;
-            margin: 20px auto;
-            display: block;
-            padding: 10px;
-        }
-        #url-copy-div {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-        @media print {
-            html {
-                background-color: white;
-                width: 21cm;
-                height: 29.7cm;
-            }
-            #form-part{
-                display: none;
-            }
-            #box-content {
-                display: block;
-                display: flex;
-                flex-direction: column;
-                justify-content: stretch;
-            }
-            body, #box, #box-content, #qrcodes-container {
-                height: 100%;
-                width: 100%;
-            }
-        }
-        @media only screen and 
-            (min-width: 320px), 
-            (min-width: 481px),
-            (min-width: 641px),
-        {
-            #qrcodes-container {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>Attestations faciles</title>
 </head>
 
 <body>
@@ -217,7 +96,7 @@
     </div>
 </body>
 
-<script src="../static/qrcode.js"></script>
+<script src="../static/qrcode.min.js"></script>
 <script type="text/javascript">
     new ClipboardJS('.btn');
     const BASE_URL = window.location.origin;
@@ -260,21 +139,6 @@
         }
         const paramString = new URLSearchParams(params)
         return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
-    }
-
-    function myFunction() {
-        /* Get the text field */
-        var copyText = document.getElementById("myInput");
-
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-        /* Copy the text inside the text field */
-        document.execCommand("copy");
-
-        /* Alert the copied text */
-        alert("Copied the text: " + copyText.value);
     }
 
     function value(id){
