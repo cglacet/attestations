@@ -74,9 +74,16 @@ export function profile(person, delay){
     return {
         ...person,
         'heuresortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris", hour12: false }),
-        'datesortie': date.toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })
+        'datesortie': frenchDate(date, 'fr-FR')
     }
 }
+
+function frenchDate(date, langCode) {
+    var day = date.toLocaleString(langCode, {day: '2-digit'});
+    var month = date.toLocaleString(langCode, {month: '2-digit'});
+    var year = date.toLocaleString(langCode, {year: 'numeric'});
+    return `${day}/${month}/${year}`;
+  }
 
 function translate(object){
     return mapObject(([k, v]) => [TRANSLATION_RULES.get(k) || k, v], object);
