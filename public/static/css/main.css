@@ -6,8 +6,16 @@ html {
 }
 h1 {
     text-align: center;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+    margin: 0;
     text-transform: capitalize;
+}
+#explanations {
+    margin: 60px auto;
+    max-width: 600px;
+}
+#explanations p.tips {
+    font-style: italic;
 }
 #url-div {
     border-bottom: 1px solid #444;
@@ -15,7 +23,8 @@ h1 {
 }
 #url-container {
     overflow-wrap: anywhere;
-    margin: 30px 0;
+    margin: 30px auto;
+    text-align: center;
 }
 @media screen {
     #box {
@@ -56,6 +65,12 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
 }
+#url-copy-div button {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 7px;
+}
 .qrcode-div {
     display: flex;
     flex-direction: column;
@@ -84,9 +99,12 @@ label {
     margin: auto 20px auto 0;
     padding: 5px;
 }
+label.reasons {
+    margin-top: 10px;
+}
 input {
     padding: 5px;
-    width: 90%;
+    width: 100%;
 }
 input[type="text"] {
     border: none;
@@ -96,10 +114,9 @@ input[type="text"] {
     margin: 50px auto 0 auto;
 }
 select {
-    width: 300px;
-    margin: 20px auto;
-    display: block;
+    margin-top: 15px;
     padding: 10px;
+    width: 100%;
 }
 #url-copy-div {
     text-align: center;
@@ -112,7 +129,7 @@ select {
         width: 21cm;
         height: 29.7cm;
     }
-    #form-part, #github {
+    #form-part, #github, #explanations {
         display: none;
     }
     #box-content {

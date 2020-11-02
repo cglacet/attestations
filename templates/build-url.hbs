@@ -18,6 +18,17 @@
                 <span>code source</span>
             </a>
         </div>
+        <div id='explanations'>
+            <p>
+                <b>Remplissez une seule fois</b> et ajoutez la page courante à vos favoris.
+                <b>La prochaine fois</b>, ouvrez simplement votre favoris pour générer une nouvelle attestation.
+            </p>
+            
+            <p class='tips'>
+                Vous pouvez même ajouter directement la <a id="url-top">page de génération d'attestations</a> et n'avoir 
+                plus qu'un clic à faire.
+            </p>
+        </div>
         <div id="box-content">
             <div id="form-part" class="center">
                 {{!-- <div id="url-div">
@@ -49,22 +60,21 @@
                         <label for="city">Ville</label>
                         <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}" autocomplete="off">
 
-                        <label for="firstname">Raisons</label><br>
+                        <label for="reasons" class="reasons">Raisons</label>
+                        <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
+                            {{#each available_reasons}}
+                                <option 
+                                    value="{{this.code}}"
+                                    {{#ifIn this.code ../profile.reasons}}
+                                        selected
+                                    {{/ifIn}}
+                                >
+                                    {{this.code}}
+                                    {{!-- this.label --}}
+                                </option> 
+                            {{/each}}
+                        </select>
                     </div>
-
-                    <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
-                        {{#each available_reasons}}
-                            <option 
-                                value="{{this.code}}"
-                                {{#ifIn this.code ../profile.reasons}}
-                                    selected
-                                {{/ifIn}}
-                            >
-                                {{this.code}}
-                                {{!-- this.label --}}
-                            </option> 
-                        {{/each}}
-                    </select>
                     
                     {{!-- <div id="submit-div">
                         L'URL générée permettra de générer automatiquement une attestation
@@ -72,19 +82,14 @@
                         <input type="submit" value="Attestation"><br>
                     </div> --}}
                 </form> 
-                Vous pouvez utiliser l'URL suivante pour générer 
-                des attestation datées automatiquement. 
-                
+                <p id="url-container">
+                    Générez des attestations grâce à <br><a id="url">votre générateur d'attestations</a>
+                </p>
                 <div id="url-copy-div" class="center">
                     <button class="btn" data-clipboard-target="#url">
-                        Copier URL <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                        Copier l'adresse du générateur <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
                     </button>
                 </div>
-
-                <p id="url-container">
-                    URL : 
-                    <a id="url"> - </a>
-                </p>
             </div>
             <div id="qrcodes-container">
                 <div class="qrcode-div">
@@ -148,7 +153,7 @@
     function fillURLsAndQRCode(options){
         const urlGet = buildURL('get');
         document.getElementById('url').setAttribute('href', urlGet);
-        document.getElementById('url').innerHTML = urlGet;
+        document.getElementById('url-top').setAttribute('href', urlGet);
         document.getElementById('url-get').setAttribute('href', urlGet);
         QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet, options);
 
