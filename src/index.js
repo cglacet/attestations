@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import server from 'server';
-import { getCertificates, getCertificate, certificatePDF } from './certificates';
+import { getCertificates, getCertificate, certificatePDF, pdfName } from './certificates';
 import { getProfile, profile as computeProfile } from './config';
 import { reasonFields } from './help';
 import blobPolyfill from 'blob-polyfill';
@@ -62,7 +62,7 @@ async function certificateDownload(context){
 }
 
 async function downloadPDF(profile, reasons){
-    const pdf = await certificatePDF(profile, reasons)
+    const pdf = await certificatePDF(profile, reasons);
     return type('application/pdf').send(new Buffer(pdf));
 }
 
@@ -86,6 +86,7 @@ async function certificateNoConfig(context){
         reasons = json.reasons.split(',');
     }
     const profile = computeProfile(json, delay);
+    context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
     return await downloadPDF(profile, reasons);
 }
 
