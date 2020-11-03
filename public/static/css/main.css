@@ -382,7 +382,8 @@ option.tooltipped:hover {
     .owner-name {
         color: var(--reasons-color);
     }
-    .qrcode-div p {
+    .qrcode-div p,
+    #qrcodes-list h3 {
         text-align: center;
     }
 }
