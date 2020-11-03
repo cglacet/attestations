@@ -92,7 +92,8 @@ async function certificateNoConfig(context){
 async function buildURL(context){
     const options = {
         'profile': context.query, 
-        'available_reasons': Array.from(reasonFields())
+        'available_reasons': Array.from(reasonFields()),
+        'github-url': "https://github.com/cglacet/attestations",
     }
     if (!options.profile.reasons || options.profile.reasons.length < 1){
         options.profile.reasons = ['travail']

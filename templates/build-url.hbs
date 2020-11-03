@@ -4,39 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-   scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/static/img/material/fact_check.svg">
     <link rel="stylesheet" href="/static/css/main.css">
     <title>Attestations faciles</title>
 </head>
 
 <body>
     <div id="box">
-        <h1>Attestations faciles</h1>
-        <div id="github">
-            <a href="https://github.com/cglacet/attestations">
-                <svg height="16" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                <span>code source</span>
-            </a>
-        </div>
-        <div id='explanations'>
-            <p>
-                <b>Remplissez une seule fois</b> et ajoutez la page courante à vos favoris.
-                <b>La prochaine fois</b>, ouvrez simplement votre favoris pour générer une nouvelle attestation.
-            </p>
-            
-            <p class='tips'>
-                Vous pouvez même ajouter directement la <a id="url-top">page de génération d'attestations</a> et n'avoir 
-                plus qu'un clic à faire.
-            </p>
+        <div id="header">
+            <div id="headline">
+                <h1>Attestations faciles</h1>
+            </div>
+            <div id="github">
+                <a href="https://github.com/cglacet/attestations">
+                    <svg height="16" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    <span>Source</span>
+                </a>
+            </div>
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">live_help</i>À quoi ça sert ?</div>
+                    <div class="collapsible-body">
+                            <div class='explanations'>
+                                <p>
+                                    <h3>Honnêtement, pas à grand chose</h3>
+                                    Mais quelques gens partagent ma frustration. Perdre du temps pourquoi pas,
+                                    mais le perdre à remplir la même information 60 fois, bof ... 
+                                </p>
+                                    
+                                    <div class="dialogue">
+                                        <p>— Quelle est votre date de naissance ?</p>
+                                        <p>— hmmm ... la même que ce matin je présume.</p>
+                                    </div>
+                                    
+                                <p>
+                                    <h3>À ne pas remplir le formulaire officiel 60 fois</h3>
+                                    Remplissez ce formulaire une seule fois et ajoutez cette page à vos favoris.
+                                    La prochaine fois, ouvrez simplement votre favoris pour générer une nouvelle attestation.
+                                </p>
+                                
+                                <p class='tips'>
+                                    Si comme moi vous n'utilisez que deux motifs de sortie, vous pouvez même gagner 
+                                    encore un clic en ajoutant directement dans vos favoris les deux générateurs (un par 
+                                    motif de sortie).
+                                </p>
+                            </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">security</i>Vous volez nos données ?</div>
+                    <div class="collapsible-body">
+                        <div class="explanations">
+                            <p>
+                                <h3>Non</h3>
+                                J'ai d'abord fait ce projet pour <a href="https://www.linkedin.com/in/cglacet/">moi</a>.
+                                Je n'ai aucun intérêt dans vos données. 
+                                Le serveur ne fait qu'une chose, <em>il récupère les informations que vous envoyez, rempli le PDF officiel 
+                                et vous le renvoie</em> (le code source de ce serveur est d'ailleurs disponible sur
+                                <a href="{{github-url}}">github</a>).
+                            </p>
+                            <p>
+                                Les données sont stockées dans l'adresse (URL) de votre navigateur web puis dans votre favoris.
+                                Cette adresse se modifie au fur et a mesure que vous 
+                                remplissez le formulaire. C'est ainsi que vous conserverez vous-même les informations
+                                permettant à la fois de re-remplir automatiquement ce formulaire mais aussi de 
+                                générer directement vos attestation au format PDF.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">account_circle</i>Qui est derrière ce site ?</div>
+                    <div class="collapsible-body">
+                        <div class="explanations">
+                            <h3>Christian Glacet</h3>
+
+                            <p>
+                                Vous pouvez me trouver sur <a href="https://www.linkedin.com/in/cglacet/">linkedin</a> par exemple.
+                                Je parle d'ailleurs de cette page dans <a href="">ce post</a>. Pour le moment j'ai fait ça seul mais 
+                                n'hésitez surtout pas à proposer des amélioration directement sur <a href="{{github-url}}">github</a>.
+                            </p>
+                            <p>Retrouvez moi également sur votre site préféré, en général sous le pseudonyme <strong>cglacet</strong> :</p>
+
+                            <div id="social-div">
+                                <a href="https://www.linkedin.com/in/christian-glacet-7a606bb2/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/linkedin.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://github.com/cglacet"><img src="https://github.com/cglacet/Blog/raw/master/images/github.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://stackoverflow.com/users/1720199/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/stackoverflow.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://dblp.uni-trier.de/pers/hd/g/Glacet:Christian" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/dblp.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://scholar.google.fr/citations?user=hRsspqQAAAAJ&amp;hl=fr&amp;oi=ao" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/scholar.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://www.researchgate.net/profile/Christian_Glacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/research_gate.png" height="20" style="max-width:100%;"></a>
+                                <a href="https://pypi.org/user/cglacet/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/pypi.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://exercism.io/profiles/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/exercism.io.png" height="20" style="max-width:100%;"></a>
+                                <a href="https://repl.it/@ChristianGlacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/repl.it.ico" height="20" style="max-width:100%;"></a>
+                                {{!-- <a href="https://expo.io/snacks/@cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/expo.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://www.instagram.com/cglacet/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/instagram.ico" height="20" style="max-width:100%;"></a>
+                                <a href="https://500px.com/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/500px.ico" height="20" style="max-width:100%;"></a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div id="box-content">
-            <div id="form-part" class="center">
-                {{!-- <div id="url-div">
-                    Votre URL
-                    <p id="url-container">
-                        <a id="url"> - </a>
-                    </p>
-                </div> --}}
+            <div id="form-part">
                 <form onSubmit="formSubmit(event); return true;" id="form">
                     <div id="inputs">
                         <label for="firstname">Prénom</label>
@@ -46,7 +118,7 @@
                         <input required type="text" id="lastname" name="lastname" placeholder="Nom" value="{{profile.lastname}}" autocomplete="family-name">
                         
                         <label for="birthday">Date de naissance</label>
-                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" type="date" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday"> 
+                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" min="12-31-1900" max="12-31-2021" type="date" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday" pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"> 
 
                         <label for="placeofbirth">Lieu de naissance</label>
                         <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
@@ -60,10 +132,22 @@
                         <label for="city">Ville</label>
                         <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}" autocomplete="off">
 
-                        <label for="reasons" class="reasons">Raisons</label>
+                        
+                        <label for="reasons" class="reasons">
+                            Motifs de la sortie 
+                            <i
+                                class="reasons tooltipped material-icons" 
+                                data-position="right"
+                                data-tooltip='<p>Je certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l&apos;épidémie de Covid19 dans le cadre de l&apos;état d&apos;urgence sanitaire <a class="footnote" href="#footnote1">[1]</a>&nbsp;:</p> <p>Sélection multiple avec la touche Ctrl (contrôle) du clavier ou ⌘ (command) sur mac.</p>'
+                                style='font-size: 1em'
+                            >help_outline</i>
+                        </label>
                         <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
                             {{#each available_reasons}}
                                 <option 
+                                    class="tooltipped"
+                                    data-position="right"
+                                    data-tooltip='<i class="material-icons reason-tooltip">{{this.icon}}</i><h3>{{this.code}}</h3>{{this.label}}'
                                     value="{{this.code}}"
                                     {{#ifIn this.code ../profile.reasons}}
                                         selected
@@ -75,12 +159,6 @@
                             {{/each}}
                         </select>
                     </div>
-                    
-                    {{!-- <div id="submit-div">
-                        L'URL générée permettra de générer automatiquement une attestation
-                        datée et remplie:
-                        <input type="submit" value="Attestation"><br>
-                    </div> --}}
                 </form> 
                 <p id="url-container">
                     Générez des attestations grâce à <br><a id="url">votre générateur d'attestations</a>
@@ -92,23 +170,43 @@
                 </div>
             </div>
             <div id="qrcodes-container">
-                <div class="qrcode-div">
-                    <h2>Générer vos attestations</h2>
-                    <p>(<span id="reasons-list"></span>)</p>
-                    <a id="url-get">
-                        <canvas id="qrcode-get"></canvas>
-                    </a>
-                </div>
-                <div class="qrcode-div">
-                    <h2>Cette page</h2>
-                    <p>(si vous voulez plus tard modifier vos options)</p>
-                    <a id="url-set">
-                        <canvas id="qrcode-set"></canvas>
-                    </a>
+                <h2>QR-Codes <span id="qrcode-owner" class="owner-name visible-on-print-only"></span></h2>
+                <span class="hidden-on-print">
+                    Si vous préférez le papier que les favoris de votre navigateur.
+                    Ou simplement vous trouvez le gadget marrant. Vous pouvez 
+                    imprimer cette page (fichier ❯ imprimer) et conserver une version papier 
+                    vous permettant de générer automatiquement de nouvelles attestations. 
+                </span>
+                <div id="qrcodes-list">
+                    <div class="qrcode-div">
+                        <h3>Générer une attestation</h3>
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour les motifs <span id="reasons-list"></span></p>
+                        <a id="url-get">
+                            <canvas id="qrcode-get"></canvas>
+                        </a>
+                    </div>
+                    <div class="qrcode-div visible-on-print-only" id="bonus-achats">
+                        <h3>Motif <span id="reasons-list">Achats</span> uniquement</h3>
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motifs <span id="reasons-list">achats</span></p>
+                        <canvas id="qrcode-get-achats"></canvas>
+                    </div>
+                    <div class="qrcode-div visible-on-print-only" id="bonus-travail">
+                        <h3>Motif <span id="reasons-list">Travail</span> uniquement</h3>
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motifs <span id="reasons-list">travail</span></p>
+                        <canvas id="qrcode-get-travail"></canvas>
+                    </div>
+                    <div class="qrcode-div">
+                        <h3>Modifier mes options</h3>
+                        <p>En scannant ce QR code vous pourrez modifier vos données ou choisir des motifs de sortie différents.</p>
+                        <a id="url-set">
+                            <canvas id="qrcode-set"></canvas>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <p id="footnotes"> <span id="footnote1"> [1] Les personnes souhaitant bénéficier de l'une de ces exceptions doivent se munir s'il y a lieu, lors de leurs déplacements hors de leur domicile, d'un document leur permettant de justifier que le déplacement considéré entre dans le champ de l'une de ces exceptions. </span><br> <span id="footnote2"> [2] A utiliser par les travailleurs non salariés, lorsqu'ils ne peuvent disposer d'un justificatif de déplacement établi par leur employeur. </span><br> <span id="footnote3"> [3] Y compris les acquisitions à titre gratuit (distribution de denrées alimentaires...) et les déplacements liés à la perception de prestations sociales et au retrait d'espèces. </span><br> </p>
 </body>
 
 <script src="../static/qrcode.min.js"></script>
@@ -119,8 +217,8 @@
     const MESSAGE_INCOMPLETE = "Vous n'avez pas fini de remplir le formulaire";
     const QR_CODE_OPTIONS = {
         color: {
-            dark:"#000",
-            light:"#FFF"
+            dark: getComputedStyle(document.documentElement).getPropertyValue('--qr-code-dark-color').trim(),
+            light: getComputedStyle(document.documentElement).getPropertyValue('--qr-code-light-color').trim()
         }
     }
     const QR_CODE_OPTIONS_ERROR = {
@@ -133,6 +231,13 @@
     form.addEventListener("input", onFormChange);
     onFormChange();
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const collapisbles = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(collapisbles, {});
+        const tooltips = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltips, {enterDelay: 400, margin: 20});
+    });
+
     function formSubmit(event){
         const url = buildURL('get');
         window.open();
@@ -140,20 +245,17 @@
     }
 
     function onFormChange(){
-        const urlGet = buildURL('get');
+        let urlGet = buildURL('get');
         const urlSet = buildURL('set');
 
         let QRCodeOptions = QR_CODE_OPTIONS;
         if (!areRequiredFilled()){
-            QRCodeOptions = QR_CODE_OPTIONS_ERROR
-            document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlSet);
-        }
-        else {
-            document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlGet);
+            QRCodeOptions = QR_CODE_OPTIONS_ERROR;
+            urlGet = urlSet;
         }
 
+        document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlGet);
         document.getElementById('url').setAttribute('href', urlGet);
-        document.getElementById('url-top').setAttribute('href', urlGet);
         document.getElementById('url-get').setAttribute('href', urlGet);
         document.getElementById('url-set').setAttribute('href', urlSet);
 
@@ -165,16 +267,45 @@
             document.getElementById('reasons-list').innerHTML = reasons.join(', ');
         }
         else {
-            document.getElementById('reasons-list').innerHTML = "Aucune raison !"
+            document.getElementById('reasons-list').innerHTML = "Aucun motif !"
         }
 
         if (window.history.replaceState) {
             window.history.replaceState(`${BASE_URL}/set`, document.title, urlSet);
         }
+
+        document.getElementById('qrcode-owner').innerHTML = ` pour ${value('firstname')} ${value('lastname')}`;
+        generateBonusQRCodes('achats');
+        generateBonusQRCodes('travail');
+    }
+
+    function generateBonusQRCodes(bonusReason){
+        const selectedReasons = getSelectValues(document.getElementById('reasons'));
+        if (selectedReasons.length > 1 || !selectedReasons.includes(bonusReason)){
+            document.getElementById(`bonus-${bonusReason}`).style.display = "";
+            const bonusURL = buildURLForReasons('get', [bonusReason]);
+            QRCode.toCanvas(document.getElementById(`qrcode-get-${bonusReason}`), bonusURL, QR_CODE_OPTIONS);
+        }
+        else {
+            document.getElementById(`bonus-${bonusReason}`).style.display = "none";
+        }
     }
 
     function buildURL(endpoint){
-        const params = {
+        const params = buildParams();
+        const paramString = new URLSearchParams(params);
+        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+    }
+
+    function buildURLForReasons(endpoint, reasons){
+        const params = buildParams();
+        params.reasons = reasons;
+        const paramString = new URLSearchParams(params);
+        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+    }
+
+    function buildParams(){
+        return {
             'firstname': value('firstname'),
             'lastname': value('lastname'),
             'birthday': toFrenchDate(value('birthday')),
@@ -183,9 +314,7 @@
             'zipcode': value('zipcode'),
             'city': value('city'),
             'reasons': getSelectValues(document.getElementById('reasons')),
-        }
-        const paramString = new URLSearchParams(params)
-        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+        };
     }
 
     function toFrenchDate(yyyy_mm_dd){
