@@ -1,0 +1,78 @@
+<div id="form-part">
+    <form onSubmit="formSubmit(event); return true;" id="form">
+        <div id="inputs">
+            <label for="firstname">Prénom</label>
+            <input required type="text" id="firstname" name="firstname" placeholder="Prénom"
+                value="{{profile.firstname}}" autocomplete="given-name">
+
+            <label for="lastname">Nom</label>
+            <input required type="text" id="lastname" name="lastname" placeholder="Nom" value="{{profile.lastname}}"
+                autocomplete="family-name">
+
+            {{!-- <label for="birthdayEN">Date de naissance</label>
+                        <input required id="birthdayEN" name="birthdayEN" lang="fr" placeholder="31/12/2000" min="12-31-1900" max="12-31-2021" type="date" date-format="dd/mm/yyyy" value="{{profile.birthdayEN}}" autocomplete="bday" pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"> --}}
+
+            <label for="birthday">Date de naissance</label>
+            <input id="birthday" placeholder="31/12/2000" value="{{profile.birthday}}" inputmode="numeric">
+
+            <label for="placeofbirth">Lieu de naissance</label>
+            <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text"
+                value="{{profile.placeofbirth}}" autocomplete="off">
+
+            <label for="address">Adresse</label>
+            <input required id="address" name="address" placeholder="12 rue des Lilas" type="text"
+                value="{{profile.address}}" autocomplete="street-address">
+
+            <label for="zipcode">Code postal</label>
+            <input required id="zipcode" name="zipcode" placeholder="33000" type="text" value="{{profile.zipcode}}"
+                autocomplete="postal-code">
+
+            <label for="city">Ville</label>
+            <input required id="city" name="city" placeholder="Bordeaux" type="text" value="{{profile.city}}"
+                autocomplete="off">
+
+
+            <label for="reasons" class="reasons">
+                Motif de la sortie
+                <i class="reasons tooltipped material-icons" data-position="right"
+                    data-tooltip='<p>Je certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l&apos;épidémie de Covid19 dans le cadre de l&apos;état d&apos;urgence sanitaire <a class="footnote" href="#footnote1">[1]</a>.</p> <p>Sélection multiple avec la touche Ctrl (contrôle) du clavier ou ⌘ (command) sur mac.</p>'
+                    style='font-size: 1em'>help_outline</i>
+            </label>
+            <select required name="reasons" id="reasons" size={{available_reasons.length}}>
+                {{#each available_reasons}}
+                <option class="tooltipped" data-position="right"
+                    data-tooltip='<i class="material-icons reason-tooltip">{{this.icon}}</i><h3>{{this.code}}</h3>{{this.label}}'
+                    value="{{this.code}}" {{#ifIn this.code ../profile.reasons}} selected {{/ifIn}}>
+                    {{this.code}}
+                    {{!-- this.label --}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+    </form>
+    <h2>Votre générateur d'attestations</h2>
+    <p id="url-container">
+        Lorsque vous avez fini de remplir le formulaire, il ne vous reste plus qu'à ajouter cette page à vos
+        favoris. Vous pouvez ensuite accéder à vos attestations en cliquant simplement sur ce lien à chaque
+        nouvelle visite :
+
+        <a class="url-get button disable-incomplete disabled"><i class="material-icons">picture_as_pdf</i> générateur
+            d'attestations</a>
+
+        <span class="tooltipped" data-position="right" data-tooltip="Le terme <em>générateur d'attestation</em> est utilisé car ce lien ne pointe pas directement vers 
+                            une attestation de sortie. Il en génère une nouvelle à chaque clic. Chaque attestation est 
+                            ainsi générée avec heure et date actuelles automatiquement remplies.">
+            Vous pouvez également ajouter directement ce générateur<b>*</b> à vos favoris.
+            Pour cela il vous faudra
+            <b>1)</b> cliquer sur ce premier lien,
+            <b>2)</b> ajouter la page sur laquelle vous arrivez à vos favoris.
+        </span>
+
+        Si cela vous arrange vous pouvez aussi copier ce lien en cliquant simplement sur
+        ce bouton :
+        <button id="url-clipboard" class="btn disable-incomplete disabled" data-clipboard-text="">
+            <i class="material-icons">content_copy</i>
+            Copier l'adresse
+        </button>
+    </p>
+</div>

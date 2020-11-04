@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'url';
+import { join as pathJoin, dirname } from 'path';
 import fetch from "node-fetch";
 import server from 'server';
 import { getCertificates, getCertificate, certificatePDF, pdfName } from './certificates';
@@ -11,17 +13,17 @@ const { get, post } = server.router;
 const { send, json, type, render } = server.reply;
 const { Blob } = blobPolyfill;
 
-
-hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
-
 hbs.registerHelper('ifIn', function(arg1, arg2, options) {
     if (arg2 && arg2.includes(arg1)){
         return options.fn(this)
     }
     return options.inverse(this);
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const partialsDirectory = pathJoin(__dirname, '..', 'templates/partials');
+hbs.registerPartials(partialsDirectory, function (err) {});
 
 server({ port: 8080 }, [
     // Endpoints that use the built-in config file:

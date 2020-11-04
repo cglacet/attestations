@@ -1,0 +1,39 @@
+<div id="qrcodes-container">
+    <h2>QR-Codes <span class="visible-on-print-only"> pour <span id="qrcode-owner" class="owner-name "></span></span>
+    </h2>
+    <span class="hidden-on-print">
+        Si vous préférez le papier que les favoris de votre navigateur.
+        Ou simplement vous trouvez le gadget marrant. Vous pouvez
+        <a href="javascript:window.print();" id="print-link" class="disable-incomplete disabled">imprimer cette page</a>
+        et conserver une version papier vous permettant de générer automatiquement de nouvelles attestations.
+    </span>
+    <div id="qrcodes-list">
+        <div class="qrcode-div">
+            <h3>Générer une attestation</h3>
+            <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span
+                    id="reasons-list"></span></p>
+            <a class="url-get disable-incomplete disabled">
+                <canvas id="qrcode-get"></canvas>
+            </a>
+        </div>
+        <div class="qrcode-div visible-on-print-only" id="bonus-achats">
+            <h3>Motif <span id="reasons-list">Achats</span> uniquement</h3>
+            <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span
+                    id="reasons-list">achats</span></p>
+            <canvas id="qrcode-get-achats"></canvas>
+        </div>
+        <div class="qrcode-div visible-on-print-only" id="bonus-travail">
+            <h3>Motif <span id="reasons-list">Travail</span> uniquement</h3>
+            <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span
+                    id="reasons-list">travail</span></p>
+            <canvas id="qrcode-get-travail"></canvas>
+        </div>
+        <div class="qrcode-div">
+            <h3>Modifier mes options</h3>
+            <p>En scannant ce QR code vous pourrez modifier vos données ou choisir des motifs de sortie différents.</p>
+            <a class="url-set">
+                <canvas id="qrcode-set"></canvas>
+            </a>
+        </div>
+    </div>
+</div>
