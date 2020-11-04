@@ -465,6 +465,7 @@ option.tooltipped:hover {
     }
     #box-content {
         display: block;
+        padding: 20px;
     }
     /* #qrcodes-container {
         display: none;
