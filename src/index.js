@@ -98,18 +98,15 @@ async function buildURL(context){
     if (!options.profile.reasons || options.profile.reasons.length < 1){
         options.profile.reasons = ['travail']
     }
-    options.profile.birthday = fromFrenchDate(options.profile.birthday);
+    options.profile.birthdayEN = fromFrenchDate(options.profile.birthday);
     return render('../templates/build-url.hbs', options);
 }
 
 
 function fromFrenchDate(dd_mm_yyyy){
-    try {
-        const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
-        return `${yyyy}-${mm}-${dd}`;
+    const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
+    if (dd == undefined || mm == undefined || yyyy == undefined) {
+        return "";
     }
-    catch (e) {
-        console.log("Error", e);
-        return dd_mm_yyyy;
-    }
+    return `${yyyy}-${mm}-${dd}`;
 }

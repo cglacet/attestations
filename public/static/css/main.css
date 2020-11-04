@@ -20,6 +20,11 @@
     --link-visited-color: #7c0cc1;
     --link-color: #0094c7;
     --highlight-color: #FF000055;
+    --highlight-alt-color-2: rgba(137, 234, 224, 1);
+    --highlight-alt-color-3: rgba(107, 232, 219, 1);
+    --button-background: rgba(38,166,154);
+    --button-hover-background: rgba(43, 187, 173, 1);
+    --button-disabled-background: rgba(164, 164, 164, 1);
 }
 html {
     font-family: "Lato", sans-serif;
@@ -34,7 +39,7 @@ h1 {
 }
 #header {
     margin: 0;
-    background: aquamarine;
+    background: #7fffd4;
     overflow: overlay;
     margin-bottom: 30px;
 }
@@ -67,13 +72,16 @@ h1 {
 #url-container {
     overflow-wrap: anywhere;
     margin: 30px auto;
+    text-align: left;
+}
+#form-part h2 {
     text-align: center;
 }
 @media screen {
     #box {
         position: relative;
         width: 95%;
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 30px auto;
         background-color: var(--box-background);
         border-radius: 7px;
@@ -112,11 +120,24 @@ h1 {
         color: var(--highlight-color-1);
     }
 }
+a.disabled {
+    /* pointer-events: none; */
+    cursor: default;
+    color: var(--foreground-color);
+    text-decoration: none;
+}
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+}
 #box-content {
     display: grid;
-    grid-template-columns: calc(350px + 10%) 1fr;
-    grid-column-gap: 60px;
-    padding: 10px 30px;
+    grid-template-columns: 400px 1fr;
+    grid-column-gap: 100px;
+    padding: 10px 70px;
 }
 #qrcodes-container {
     display: flex;
@@ -134,12 +155,47 @@ canvas {
     min-width: 260px;
     min-height: 260px;
 }
-#url-copy-div button {
-    display: inline-flex;
-    flex-wrap: wrap;
+button, a.button {
+    font-size: 13px;
+    display: flex;
+    width: fit-content;
+    justify-content: center;
     gap: 12px;
-    padding: 7px;
-    transition: background-color .2s ease-out;
+    margin: 20px auto;
+    border: none;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--button-background);
+    text-align: center;
+    letter-spacing: .7px;
+    -webkit-transition: background-color .3s ease-out;
+    transition: background-color .3s ease-out;
+    cursor: pointer;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10), 0 3px 1px -2px rgba(0, 0, 0, 0.08), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10), 0 3px 1px -2px rgba(0, 0, 0, 0.08), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+button .material-icons, a.button .material-icons {
+    line-height: 36px;
+    color: #FFF;
+}
+button:hover, a.button:hover {
+    background-color: var(--button-hover-background);
+    box-shadow: 0 5px 15px rgba(43, 187, 173, .3);
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+}
+button.disabled, 
+a.button.disabled,
+button:hover.disabled {
+    background-color: var(--button-disabled-background);
+    box-shadow: none;
+    cursor: not-allowed!important;
 }
 .qrcode-div {
     display: flex;
@@ -202,6 +258,7 @@ input {
 input::placeholder {
     color: var(--input-placeholder-color);
     font-weight: 300;
+    font-style: italic;
 }
 input:focus {
     outline: none;
@@ -225,8 +282,7 @@ select {
     border-radius: 5px;
     color: var(--foreground-color);
     border: none;
-    /* background-color: #0a1f4108; */
-    background-color: #7fffd477;
+    background-color: #f8f6f6;
 }
 select:focus {
     outline: none;
@@ -237,10 +293,10 @@ option {
 option::after {
     content: attr('data-icon');
 }
-select[multiple] option:checked {
+select option:checked {
     background: var(--highlight-alt-color-2) linear-gradient(0deg, var(--highlight-alt-color-2) 0%, var(--highlight-alt-color-2) 100%);
 }
-select[multiple]:focus option:checked {
+select:focus option:checked {
     background: var(--highlight-alt-color-3) linear-gradient(0deg, var(--highlight-alt-color-3) 0%, var(--highlight-alt-color-3) 100%);
 }
 #url-copy-div {
@@ -273,6 +329,13 @@ ul:not(.browser-default)>li {
     padding: 1rem;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
+}
+.collapsible-header:hover {
+    --glow-color: #f1f4fb;
+    transition: background-color .3s ease;
+    -webkit-box-shadow: inset 0 0 30px var(--glow-color);
+    -moz-box-shadow: inset 0 0 30px var(--glow-color);
+    box-shadow: inset 0 0 30px var(--glow-color);
 }
 .collapsible-header:focus {
     outline: 0;
@@ -360,6 +423,9 @@ option.tooltipped:hover {
     }
     .visible-on-print-only {
         display: initial;
+    }
+    .qrcode-div.visible-on-print-only {
+        display: flex;
     }
     #box-content {
         display: block;

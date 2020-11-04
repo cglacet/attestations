@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-   scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="/static/img/material/fact_check.svg">
     <link rel="stylesheet" href="/static/css/main.css">
     <title>Attestations faciles</title>
@@ -29,7 +31,7 @@
                     <div class="collapsible-body">
                             <div class='explanations'>
                                 <p>
-                                    <h3>Honnêtement, pas à grand chose</h3>
+                                    <h3>Honnêtement, pas à grand-chose</h3>
                                     Mais quelques gens partagent ma frustration. Perdre du temps pourquoi pas,
                                     mais le perdre à remplir la même information 60 fois, bof ... 
                                 </p>
@@ -41,8 +43,10 @@
                                     
                                 <p>
                                     <h3>À ne pas remplir le formulaire officiel 60 fois</h3>
-                                    Remplissez ce formulaire une seule fois et ajoutez cette page à vos favoris.
-                                    La prochaine fois, ouvrez simplement votre favoris pour générer une nouvelle attestation.
+                                    Remplissez ce formulaire une seule fois et ajoutez cette page à vos 
+                                    favoris<a href="https://support.google.com/chrome/answer/188842?hl=fr"><i class="material-icons" style="font-size: 1em;">help_outline</i></a>.
+                                    Les prochaine fois, ouvrez simplement ce nouveau favoris pour 
+                                    générer de nouvelles attestations horodatées.
                                 </p>
                                 
                                 <p class='tips'>
@@ -67,10 +71,10 @@
                             </p>
                             <p>
                                 Les données sont stockées dans l'adresse (URL) de votre navigateur web puis dans votre favoris.
-                                Cette adresse se modifie au fur et a mesure que vous 
+                                Cette adresse se modifie au fur et à mesure que vous 
                                 remplissez le formulaire. C'est ainsi que vous conserverez vous-même les informations
                                 permettant à la fois de re-remplir automatiquement ce formulaire mais aussi de 
-                                générer directement vos attestation au format PDF.
+                                générer directement vos attestations au format PDF.
                             </p>
                         </div>
                     </div>
@@ -83,24 +87,28 @@
 
                             <p>
                                 Vous pouvez me trouver sur <a href="https://www.linkedin.com/in/cglacet/">linkedin</a> par exemple.
-                                Je parle d'ailleurs de cette page dans <a href="">ce post</a>. Pour le moment j'ai fait ça seul mais 
-                                n'hésitez surtout pas à proposer des amélioration directement sur <a href="{{github-url}}">github</a>.
+                                Je parle d'ailleurs de cette page dans 
+                                <a href="https://www.linkedin.com/posts/cglacet_attestations-faciles-activity-6728934673243758592-ueof">cette publication</a>. 
+                                Pour le moment j'ai fait ça presque seul mais n'hésitez surtout pas à proposer des améliorations 
+                                directement sur <a href="{{github-url}}">github</a> (merci déjà à tous ceux qui ont 
+                                <a href="https://github.com/cglacet/attestations/issues?q=is%3Aissue">reporté des problèmes</a> et donc 
+                                participé à l'amélioration de cette page).
                             </p>
-                            <p>Retrouvez moi également sur votre site préféré, en général sous le pseudonyme <strong>cglacet</strong> :</p>
+                            <p>Retrouvez-moi également sur votre site préféré, en général sous le pseudonyme <strong>cglacet</strong> :</p>
 
                             <div id="social-div">
                                 <a href="https://www.linkedin.com/in/christian-glacet-7a606bb2/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/linkedin.ico" height="20" style="max-width:100%;"></a>
                                 <a href="https://github.com/cglacet"><img src="https://github.com/cglacet/Blog/raw/master/images/github.ico" height="20" style="max-width:100%;"></a>
                                 <a href="https://stackoverflow.com/users/1720199/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/stackoverflow.ico" height="20" style="max-width:100%;"></a>
-                                <a href="https://dblp.uni-trier.de/pers/hd/g/Glacet:Christian" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/dblp.ico" height="20" style="max-width:100%;"></a>
+                                {{!-- <a href="https://dblp.uni-trier.de/pers/hd/g/Glacet:Christian" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/dblp.ico" height="20" style="max-width:100%;"></a> --}}
                                 <a href="https://scholar.google.fr/citations?user=hRsspqQAAAAJ&amp;hl=fr&amp;oi=ao" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/scholar.ico" height="20" style="max-width:100%;"></a>
                                 <a href="https://www.researchgate.net/profile/Christian_Glacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/research_gate.png" height="20" style="max-width:100%;"></a>
                                 <a href="https://pypi.org/user/cglacet/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/pypi.ico" height="20" style="max-width:100%;"></a>
                                 <a href="https://exercism.io/profiles/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/exercism.io.png" height="20" style="max-width:100%;"></a>
                                 <a href="https://repl.it/@ChristianGlacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/repl.it.ico" height="20" style="max-width:100%;"></a>
-                                {{!-- <a href="https://expo.io/snacks/@cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/expo.ico" height="20" style="max-width:100%;"></a>
+                                {{!-- <a href="https://expo.io/snacks/@cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/expo.ico" height="20" style="max-width:100%;"></a> --}}
                                 <a href="https://www.instagram.com/cglacet/" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/instagram.ico" height="20" style="max-width:100%;"></a>
-                                <a href="https://500px.com/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/500px.ico" height="20" style="max-width:100%;"></a> --}}
+                                <a href="https://500px.com/cglacet" rel="nofollow"><img src="https://github.com/cglacet/Blog/raw/master/images/500px.ico" height="20" style="max-width:100%;"></a>
                             </div>
                         </div>
                     </div>
@@ -117,8 +125,11 @@
                         <label for="lastname">Nom</label>
                         <input required type="text" id="lastname" name="lastname" placeholder="Nom" value="{{profile.lastname}}" autocomplete="family-name">
                         
-                        <label for="birthday">Date de naissance</label>
-                        <input required id="birthday" name="birthday" lang="fr" placeholder="31/12/2000" min="12-31-1900" max="12-31-2021" type="date" date-format="dd/mm/yyyy" value="{{profile.birthday}}" autocomplete="bday" pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"> 
+                        {{!-- <label for="birthdayEN">Date de naissance</label>
+                        <input required id="birthdayEN" name="birthdayEN" lang="fr" placeholder="31/12/2000" min="12-31-1900" max="12-31-2021" type="date" date-format="dd/mm/yyyy" value="{{profile.birthdayEN}}" autocomplete="bday" pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"> --}}
+
+                        <label for="birthday">Date de naissance V2</label>
+                        <input id="birthday" placeholder="31/12/2000" value="{{profile.birthday}}">
 
                         <label for="placeofbirth">Lieu de naissance</label>
                         <input required id="placeofbirth" name="placeofbirth" placeholder="Paris" type="text" value="{{profile.placeofbirth}}" autocomplete="off">
@@ -134,15 +145,15 @@
 
                         
                         <label for="reasons" class="reasons">
-                            Motifs de la sortie 
+                            Motif de la sortie 
                             <i
                                 class="reasons tooltipped material-icons" 
                                 data-position="right"
-                                data-tooltip='<p>Je certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l&apos;épidémie de Covid19 dans le cadre de l&apos;état d&apos;urgence sanitaire <a class="footnote" href="#footnote1">[1]</a>&nbsp;:</p> <p>Sélection multiple avec la touche Ctrl (contrôle) du clavier ou ⌘ (command) sur mac.</p>'
+                                data-tooltip='<p>Je certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l&apos;épidémie de Covid19 dans le cadre de l&apos;état d&apos;urgence sanitaire <a class="footnote" href="#footnote1">[1]</a>.</p> <p>Sélection multiple avec la touche Ctrl (contrôle) du clavier ou ⌘ (command) sur mac.</p>'
                                 style='font-size: 1em'
                             >help_outline</i>
                         </label>
-                        <select required name="reasons" id="reasons" size={{available_reasons.length}} multiple>
+                        <select required name="reasons" id="reasons" size={{available_reasons.length}}>
                             {{#each available_reasons}}
                                 <option 
                                     class="tooltipped"
@@ -159,46 +170,66 @@
                             {{/each}}
                         </select>
                     </div>
-                </form> 
+                </form>
+                <h2>Votre générateur d'attestations</h2>
                 <p id="url-container">
-                    Générez des attestations grâce à <br><a id="url">votre générateur d'attestations</a>
-                </p>
-                <div id="url-copy-div" class="center">
-                    <button id="url-clipboard" class="btn" data-clipboard-text="">
-                        Copier l'adresse du générateur <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                    Lorsque vous avez fini de remplir le formulaire, il ne vous reste plus qu'à ajouter cette page à vos 
+                    favoris. Vous pouvez ensuite accéder à vos attestations en cliquant simplement sur ce lien à chaque 
+                    nouvelle visite :
+
+                    <a class="url-get button disable-incomplete disabled"><i class="material-icons">picture_as_pdf</i> générateur d'attestations</a>
+
+                    <span
+                        class="tooltipped"
+                        data-position="right"
+                        data-tooltip="Le terme <em>générateur d'attestation</em> est utilisé car ce lien ne pointe pas directement vers 
+                            une attestation de sortie. Il en génère une nouvelle à chaque clic. Chaque attestation est 
+                            ainsi générée avec heure et date actuelles automatiquement remplies."
+                    >
+                        Vous pouvez également ajouter directement ce générateur<b>*</b> à vos favoris. 
+                        Pour cela il vous faudra 
+                            <b>1)</b> cliquer sur ce premier lien, 
+                            <b>2)</b> ajouter la page sur laquelle vous arrivez à vos favoris.
+                    </span>
+                    
+                    Si cela vous arrange vous pouvez aussi copier ce lien en cliquant simplement sur 
+                    ce bouton :
+                    <button id="url-clipboard" class="btn disable-incomplete disabled" data-clipboard-text="">
+                        <i class="material-icons">content_copy</i>
+                        Copier l'adresse du générateur
                     </button>
-                </div>
+                </p>
             </div>
             <div id="qrcodes-container">
-                <h2>QR-Codes <span id="qrcode-owner" class="owner-name visible-on-print-only"></span></h2>
+                <h2>QR-Codes <span class="visible-on-print-only"> pour <span id="qrcode-owner" class="owner-name "></span></span></h2>
                 <span class="hidden-on-print">
                     Si vous préférez le papier que les favoris de votre navigateur.
                     Ou simplement vous trouvez le gadget marrant. Vous pouvez 
-                    imprimer cette page (fichier ❯ imprimer) et conserver une version papier 
-                    vous permettant de générer automatiquement de nouvelles attestations. 
+                    <a href="javascript:window.print();" id="print-link" class="disable-incomplete disabled">imprimer cette page</a> 
+                    et conserver une version papier vous permettant de générer automatiquement de nouvelles attestations. 
                 </span>
                 <div id="qrcodes-list">
                     <div class="qrcode-div">
                         <h3>Générer une attestation</h3>
-                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour les motifs <span id="reasons-list"></span></p>
-                        <a id="url-get">
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span id="reasons-list"></span></p>
+                        <a class="url-get disable-incomplete disabled">
                             <canvas id="qrcode-get"></canvas>
                         </a>
                     </div>
                     <div class="qrcode-div visible-on-print-only" id="bonus-achats">
                         <h3>Motif <span id="reasons-list">Achats</span> uniquement</h3>
-                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motifs <span id="reasons-list">achats</span></p>
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span id="reasons-list">achats</span></p>
                         <canvas id="qrcode-get-achats"></canvas>
                     </div>
                     <div class="qrcode-div visible-on-print-only" id="bonus-travail">
                         <h3>Motif <span id="reasons-list">Travail</span> uniquement</h3>
-                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motifs <span id="reasons-list">travail</span></p>
+                        <p>En scannant ce QR code vous générez une nouvelle attestation horodatée pour le motif <span id="reasons-list">travail</span></p>
                         <canvas id="qrcode-get-travail"></canvas>
                     </div>
                     <div class="qrcode-div">
                         <h3>Modifier mes options</h3>
                         <p>En scannant ce QR code vous pourrez modifier vos données ou choisir des motifs de sortie différents.</p>
-                        <a id="url-set">
+                        <a class="url-set">
                             <canvas id="qrcode-set"></canvas>
                         </a>
                     </div>
@@ -209,9 +240,8 @@
     <p id="footnotes"> <span id="footnote1"> [1] Les personnes souhaitant bénéficier de l'une de ces exceptions doivent se munir s'il y a lieu, lors de leurs déplacements hors de leur domicile, d'un document leur permettant de justifier que le déplacement considéré entre dans le champ de l'une de ces exceptions. </span><br> <span id="footnote2"> [2] A utiliser par les travailleurs non salariés, lorsqu'ils ne peuvent disposer d'un justificatif de déplacement établi par leur employeur. </span><br> <span id="footnote3"> [3] Y compris les acquisitions à titre gratuit (distribution de denrées alimentaires...) et les déplacements liés à la perception de prestations sociales et au retrait d'espèces. </span><br> </p>
 </body>
 
-<script src="../static/qrcode.min.js"></script>
+<script src="../static/js/qrcode/qrcode.min.js"></script>
 <script type="text/javascript">
-    new ClipboardJS('.btn');
     const BASE_URL = window.location.origin;
     const form = document.getElementById("form");
     const MESSAGE_INCOMPLETE = "Vous n'avez pas fini de remplir le formulaire";
@@ -223,73 +253,17 @@
     }
     const QR_CODE_OPTIONS_ERROR = {
         color: {
-            dark:"#AAA",
-            light:"#FFF"
+            dark:"#CCC",
+            light: getComputedStyle(document.documentElement).getPropertyValue('--qr-code-light-color').trim()
         }
     }
 
-    form.addEventListener("input", onFormChange);
+    // Make sure to update on first render, it's needed
+    // when someone with a completed form URL comes in:
     onFormChange();
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const collapisbles = document.querySelectorAll('.collapsible');
-        M.Collapsible.init(collapisbles, {});
-        const tooltips = document.querySelectorAll('.tooltipped');
-        M.Tooltip.init(tooltips, {enterDelay: 400, margin: 20});
-    });
-
-    function formSubmit(event){
-        const url = buildURL('get');
-        window.open();
-        event.preventDefault();
-    }
-
-    function onFormChange(){
-        let urlGet = buildURL('get');
-        const urlSet = buildURL('set');
-
-        let QRCodeOptions = QR_CODE_OPTIONS;
-        if (!areRequiredFilled()){
-            QRCodeOptions = QR_CODE_OPTIONS_ERROR;
-            urlGet = urlSet;
-        }
-
-        document.getElementById('url-clipboard').setAttribute('data-clipboard-text', urlGet);
-        document.getElementById('url').setAttribute('href', urlGet);
-        document.getElementById('url-get').setAttribute('href', urlGet);
-        document.getElementById('url-set').setAttribute('href', urlSet);
-
-        QRCode.toCanvas(document.getElementById('qrcode-get'), urlGet, QRCodeOptions);
-        QRCode.toCanvas(document.getElementById('qrcode-set'), urlSet, QRCodeOptions);
-
-        const reasons = getSelectValues(document.getElementById('reasons'));
-        if (reasons && reasons.length > 0){
-            document.getElementById('reasons-list').innerHTML = reasons.join(', ');
-        }
-        else {
-            document.getElementById('reasons-list').innerHTML = "Aucun motif !"
-        }
-
-        if (window.history.replaceState) {
-            window.history.replaceState(`${BASE_URL}/set`, document.title, urlSet);
-        }
-
-        document.getElementById('qrcode-owner').innerHTML = ` pour ${value('firstname')} ${value('lastname')}`;
-        generateBonusQRCodes('achats');
-        generateBonusQRCodes('travail');
-    }
-
-    function generateBonusQRCodes(bonusReason){
-        const selectedReasons = getSelectValues(document.getElementById('reasons'));
-        if (selectedReasons.length > 1 || !selectedReasons.includes(bonusReason)){
-            document.getElementById(`bonus-${bonusReason}`).style.display = "";
-            const bonusURL = buildURLForReasons('get', [bonusReason]);
-            QRCode.toCanvas(document.getElementById(`qrcode-get-${bonusReason}`), bonusURL, QR_CODE_OPTIONS);
-        }
-        else {
-            document.getElementById(`bonus-${bonusReason}`).style.display = "none";
-        }
-    }
+    form.addEventListener("input", onFormChange);
+    document.addEventListener('DOMContentLoaded', initializeInteractiveElements());
 
     function buildURL(endpoint){
         const params = buildParams();
@@ -297,18 +271,18 @@
         return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
     }
 
-    function buildURLForReasons(endpoint, reasons){
-        const params = buildParams();
-        params.reasons = reasons;
-        const paramString = new URLSearchParams(params);
-        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+    function buildURLGet(){
+        // This way we avoid creating incomplete forms 
+        // (always redirect to the creation page if any information is missing)
+        return isFormCompleted() ? buildURL('get') : buildURL('set');
     }
-
+    
     function buildParams(){
         return {
             'firstname': value('firstname'),
             'lastname': value('lastname'),
-            'birthday': toFrenchDate(value('birthday')),
+            {{!-- 'birthday': toFrenchDate(value('birthdayEN')), --}}
+            'birthday': value('birthday'),
             'placeofbirth': value('placeofbirth'),
             'address': value('address'),
             'zipcode': value('zipcode'),
@@ -317,18 +291,101 @@
         };
     }
 
-    function toFrenchDate(yyyy_mm_dd){
-        try {
-            const [yyyy, mm, dd] = yyyy_mm_dd.split('-');
-            return `${dd}/${mm}/${yyyy}`;
-        }
-        catch (e) {
-            console.log("Error", e);
-            return yyyy_mm_dd;
+    function onFormChange(){
+        const urlGet = buildURLGet();
+        const urlSet = buildURL('set');
+        setElementsURLs("url-get", urlGet);
+        setElementsURLs("url-set", urlSet);
+        setClipboardURL(urlGet);
+        setQRCode('qrcode-get', urlGet);
+        setQRCode('qrcode-set', urlSet);
+        setNavigatorURL(urlSet);
+        updateReasons();
+        updateOwnerName();
+        disableOnIncomplete();
+        generateBonusQRCodes('achats');
+        generateBonusQRCodes('travail');
+    }
+
+    function setElementsURLs(className, url){
+        for (const element of document.getElementsByClassName(className)){
+            element.setAttribute('href', url);
         }
     }
 
-    function areRequiredFilled() {
+    function setClipboardURL(url){
+        document.getElementById('url-clipboard').setAttribute('data-clipboard-text', url);
+    }
+
+    function setQRCode(elementID, url){
+        QRCode.toCanvas(document.getElementById(elementID), url, QRCodeOptions());
+    }
+
+    function QRCodeOptions(){
+        return isFormCompleted() ? QR_CODE_OPTIONS : QR_CODE_OPTIONS_ERROR
+    }
+
+    function setNavigatorURL(url){
+        if (window.history.replaceState) {
+            window.history.replaceState(`${BASE_URL}/set`, document.title, url);
+        }
+    }
+
+    function updateOwnerName(){
+        document.getElementById('qrcode-owner').innerHTML = `${value('firstname')} ${value('lastname')}`;
+    }
+
+    function updateReasons(){
+        const reasons = getSelectValues(document.getElementById('reasons'));
+        if (reasons && reasons.length > 0){
+            document.getElementById('reasons-list').innerHTML = reasons.join(', ');
+        }
+        else {
+            document.getElementById('reasons-list').innerHTML = "Aucun motif !"
+        }
+    }
+
+    function generateBonusQRCodes(bonusReason){
+        const selectedReasons = getSelectValues(document.getElementById('reasons'));
+        if (selectedReasons.length > 1 || !selectedReasons.includes(bonusReason)){
+            document.getElementById(`bonus-${bonusReason}`).style.display = "";
+            const bonusURL = buildURLForReasons('get', [bonusReason]);
+            setQRCode(`qrcode-get-${bonusReason}`, bonusURL)
+        }
+        else {
+            document.getElementById(`bonus-${bonusReason}`).style.display = "none";
+        }
+    }
+
+    function buildURLForReasons(endpoint, reasons){
+        const params = buildParams();
+        params.reasons = reasons;
+        const paramString = new URLSearchParams(params);
+        return `${BASE_URL}/${endpoint}?${paramString.toString()}`;
+    }
+    
+    function disableOnIncomplete(){
+        if (isFormCompleted()){
+            enableRegisteredInputs();
+        }
+        else {
+            disableRegisteredInputs();
+        }
+    }
+
+    function enableRegisteredInputs(){
+        for (const element of document.getElementsByClassName('disable-incomplete')){
+            element.classList.remove('disabled');
+        }
+    }
+
+    function disableRegisteredInputs(){
+        for (const element of document.getElementsByClassName('disable-incomplete')){
+            element.classList.add('disabled');
+        }
+    }
+
+    function isFormCompleted() {
         const form = document.getElementById('form');
         for(const element of form.elements){
             if(element.hasAttribute('required') && element.value == ''){
@@ -355,6 +412,35 @@
         }
         return result;
     }
+
+    function toFrenchDate(yyyy_mm_dd){
+        const [yyyy, mm, dd] = yyyy_mm_dd.split('-');
+        if (dd == undefined || mm == undefined || yyyy == undefined) {
+            return "";
+        }
+        return `${dd}/${mm}/${yyyy}`;
+    }
+
+    function initializeInteractiveElements(){
+        // https://nosir.github.io/cleave.js/
+        const options = {
+            date: true,
+            datePattern: ['d', 'm', 'Y'],
+            dateMin: "1880-01-01",
+            dateMax: "2022-01-01",
+        };
+        new Cleave('#birthday', options);
+
+        // Materialize at https://materializecss.com/collapsible.html
+        const collapsibleElements = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(collapsibleElements, {});
+        const tooltipElements = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltipElements, {enterDelay: 500, margin: 20});
+
+        // https://clipboardjs.com/
+        new ClipboardJS('.btn');
+    }
+    {{!-- https://geo.api.gouv.fr/communes?nom=Talen&fields=nom,code,codesPostaux&format=json&geometry=centre --}}
 </script>
 
 </html>
