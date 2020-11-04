@@ -25,7 +25,7 @@ const __dirname = dirname(__filename);
 const partialsDirectory = pathJoin(__dirname, '..', 'templates/partials');
 hbs.registerPartials(partialsDirectory, function (err) {});
 
-server({ port: 8080 }, [
+server({ port: 8080, log: 'notice' }, [
     // Endpoints that use the built-in config file:
     // get('/certificate', certificate),
     get('/get-short', certificateDownload),
