@@ -104,9 +104,14 @@ async function buildURL(context){
 
 
 function fromFrenchDate(dd_mm_yyyy){
-    const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
-    if (dd == undefined || mm == undefined || yyyy == undefined) {
+    try {
+        const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
+        if (dd == undefined || mm == undefined || yyyy == undefined) {
+            return "";
+        }
+        return `${yyyy}-${mm}-${dd}`;
+    }
+    catch (e) {
         return "";
     }
-    return `${yyyy}-${mm}-${dd}`;
 }
