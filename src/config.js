@@ -1,6 +1,7 @@
 import yaml from 'js-yaml';
 import fs from 'fs';
 import capitalize from 'capitalize';
+import moment from 'moment-timezone';
 
 const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
 export const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
@@ -68,13 +69,14 @@ export function getProfile(firstname, delay){
 
 export function profile(person, delay){
     const date = (delay != undefined) ? new Date(Date.now() + 60000 * parseFloat(delay)) : new Date();
+    const dateTZ = moment.tz(new Date(), "Europe/Paris");
     person['firstname'] = capitalize(person['firstname']);
     person['lastname'] = capitalize(person['lastname']);
     person['city'] = capitalize(person['city']);
     return {
         ...person,
-        'heuresortie': date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: "Europe/Paris", hour12: false }),
-        'datesortie': frenchDate(date, 'fr-FR')
+        'heuresortie': dateTZ.format("HH:MM"),
+        'datesortie': dateTZ.format("DD/MM/YYYY"),
     }
 }
 

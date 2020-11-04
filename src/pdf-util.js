@@ -1,5 +1,6 @@
 import { generateQR } from './util'
-import pdfLib from 'pdf-lib'
+import moment from 'moment-timezone';
+import pdfLib from 'pdf-lib';
 const { PDFDocument, StandardFonts } = pdfLib;
 
 const ys = {
@@ -15,11 +16,9 @@ const ys = {
 }
 
 export async function generatePdf (profile, reasons, pdfBase) {
-  const creationInstant = new Date()
-  const creationDate = creationInstant.toLocaleDateString('fr-FR')
-  const creationHour = creationInstant
-    .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
-    .replace(':', 'h')
+  const creationInstant = moment.tz(new Date(), "Europe/Paris");
+  const creationDate = creationInstant.format("DD/MM/YYYY");
+  const creationHour = creationInstant.format("HH:MM");
 
   const {
     lastname,
