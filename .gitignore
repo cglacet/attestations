@@ -1,6 +1,8 @@
 # Private credentials
 mail-config.yml
 
+*.envrc
+
 # Generated PDFs
 *.pdf
 

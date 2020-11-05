@@ -3,7 +3,7 @@ import { join as pathJoin, dirname } from 'path';
 import fetch from "node-fetch";
 import server from 'server';
 import { getCertificates, getCertificate, certificatePDF, pdfName } from './certificates';
-import { getProfile, profile as computeProfile } from './config';
+import { ENV, getProfile, profile as computeProfile } from './config';
 import { reasonFields } from './help';
 import blobPolyfill from 'blob-polyfill';
 import hbs from 'hbs';
@@ -97,6 +97,7 @@ async function buildURL(context){
         'profile': context.query, 
         'available_reasons': Array.from(reasonFields()),
         'github-url': "https://github.com/cglacet/attestations",
+        'ENV': ENV,
     }
     if (!options.profile.reasons || options.profile.reasons.length < 1){
         options.profile.reasons = ['travail']
@@ -106,7 +107,7 @@ async function buildURL(context){
 }
 
 async function incrementHitCounter(endpoint){
-    fetch(`https://api.countapi.xyz/hit/cglacet-attestation/${endpoint}`);
+    fetch(`https://api.countapi.xyz/hit/cglacet-attestation/${endpoint}${ENV}`);
 }
 
 
