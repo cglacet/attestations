@@ -88,6 +88,7 @@ async function certificateNoConfig(context){
     }
     const profile = computeProfile(json, delay);
     context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
+    incrementHitCounter('get');
     return await downloadPDF(profile, reasons);
 }
 
@@ -102,6 +103,10 @@ async function buildURL(context){
     }
     options.profile.birthdayEN = fromFrenchDate(options.profile.birthday);
     return render('../templates/build-url.hbs', options);
+}
+
+async function incrementHitCounter(endpoint){
+    fetch(`https://api.countapi.xyz/hit/cglacet-attestation/${endpoint}`);
 }
 
 

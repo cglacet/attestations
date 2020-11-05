@@ -59,6 +59,23 @@
                                 permettant à la fois de re-remplir automatiquement ce formulaire mais aussi de 
                                 générer directement vos attestations au format PDF.
                             </p>
+
+                            <p>
+                                Par curiosité j'ai ajouté un compteur pour avoir une idée du nombre de visites sur cette 
+                                page, je vous partage donc cette information. Depuis que j'ai ajouté le compteur
+                                il y a eu <b><span id="nb-visits"></span></b> visites sur cette page et <b><span id="nb-attestations"></span></b> attestations créées.
+
+                                <script>
+                                    function fillVisits(response){
+                                        document.getElementById('nb-visits').innerText = response.value;
+                                    }
+                                    function fillAttestations(response){
+                                        document.getElementById('nb-attestations').innerText = response.value;
+                                    }
+                                </script>
+                                <script async src="https://api.countapi.xyz/hit/cglacet-attestation/set?callback=fillVisits"></script>
+                                <script async src="https://api.countapi.xyz/get/cglacet-attestation/get?callback=fillAttestations"></script>
+                            </p>
                         </div>
                     </div>
                 </li>
