@@ -34,6 +34,7 @@ server({ port: 8080, log: 'notice' }, [
     // Public endpoints, no config
     get('/get', certificateNoConfig),
     get('/set', buildURL),
+    get('/stats', readCounters)
 ]);
 
 
@@ -63,6 +64,7 @@ async function certificateDownload(context){
 }
 
 async function downloadPDF(profile, reasons){
+    context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
     const pdf = await certificatePDF(profile, reasons);
     return type('application/pdf').send(new Buffer(pdf));
 }
@@ -78,6 +80,7 @@ async function certificates(context){
 
 // Example : /get?firstname=christian&lastname=glacet&reasons=travail,achats&birthday=31%2F07%2F1986&placeofbirth=Seine%20St.%20Denis&address=48%20rue%20Camille%20Pelletan%2C%20bat.%20B%2C%20apt.%2045&zipcode=33400&city=Talence
 async function certificateNoConfig(context){
+    incrementCounter('get');
     const json = context.query;
     let {reasons, delay, ...person} = json;
     if (!reasons || reasons.length == 0){
@@ -87,8 +90,6 @@ async function certificateNoConfig(context){
         reasons = json.reasons.split(',');
     }
     const profile = computeProfile(json, delay);
-    context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
-    incrementHitCounter('get');
     return await downloadPDF(profile, reasons);
 }
 
@@ -106,11 +107,6 @@ async function buildURL(context){
     return render('../templates/build-url.hbs', options);
 }
 
-async function incrementHitCounter(endpoint){
-    fetch(`https://api.countapi.xyz/hit/cglacet-attestation/${endpoint}${ENV}`);
-}
-
-
 function fromFrenchDate(dd_mm_yyyy){
     try {
         const [dd, mm, yyyy] = dd_mm_yyyy.split('/');
@@ -122,4 +118,28 @@ function fromFrenchDate(dd_mm_yyyy){
     catch (e) {
         return "";
     }
+}
+
+const COUNTER_START_DATE = new Date(2020, 10, 5, 18, 16, 0);
+const COUNTER_HIT = "https://api.countapi.xyz/hit/cglacet-attestation";
+const COUNTER_GET = "https://api.countapi.xyz/get/cglacet-attestation";
+
+async function incrementCounter(endpoint, env = ENV){
+    return await fetch(`${COUNTER_HIT}/${endpoint}${env}`);
+}
+async function readCounter(endpoint, env = ENV){
+    return await fetch(`${COUNTER_GET}/${endpoint}${env}`);
+}
+
+async function readCounters(context){
+    const env = (context.query.production != undefined)? "" : ENV;
+    const [statsGET, statsSET] = await Promise.all([
+        readCounter('get', env),
+        readCounter('set', env),
+    ]);
+    return json({
+        'get': await statsGET.json(),
+        'set': await statsSET.json(),
+        'creationDate': COUNTER_START_DATE.toJSON(),
+    });
 }
