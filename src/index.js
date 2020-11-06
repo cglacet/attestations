@@ -88,8 +88,8 @@ async function certificateNoConfig(context){
     else {
         reasons = json.reasons.split(',');
     }
-    context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
     const profile = computeProfile(json, delay);
+    context.res.setHeader('Content-Disposition', `filename="${pdfName(profile)}"`);
     return await downloadPDF(profile, reasons);
 }
 
