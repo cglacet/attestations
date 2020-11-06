@@ -1,0 +1,9 @@
+#box-content.stats {
+    display: block;
+}
+#box-content.stats ul {
+    padding-left: 50px;
+}
+#box-content.stats ul li {
+    list-style: disc;
+}

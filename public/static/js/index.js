@@ -14,9 +14,6 @@ const QR_CODE_OPTIONS_ERROR = {
     }
 }
 
-// Make sure to update on first render, it's needed
-// when someone with a completed form URL comes in:
-onFormChange();
 form.addEventListener("input", onFormChange);
 
 function buildURL(endpoint){

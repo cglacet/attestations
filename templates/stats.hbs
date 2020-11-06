@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+    <script src="/static/js/patch.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/static/img/material/fact_check.svg">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/stats.css">
+    <title>Attestations faciles</title>
+</head>
+
+<body>
+    <div id="box">
+        {{> header}}
+        <div id="box-content" class="stats">
+            <h2>Statistiques de visites</h2>
+            Au total <span id="visits">a</span> visites et <span id="certificates"></span> attestations générées.
+            En moyenne :
+            <ul id="avg-stats"></ul>
+            <a href="/set">La page pour créer de nouvelles attestations</a>.
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const d = new Date(2020, 10, 5, 18, 16, 0);
+
+    const SECONDS_IN = new Map([
+        {{!-- ['minute', 60], --}}
+        ['heure', 60 * 60],
+        ['jour', 60 * 60 * 24],
+        ['semaine', 60 * 60 * 24 * 7],
+    ]);
+
+    function averages(count, since){
+        return SECONDS_IN.mapValues(nbSeconds => averagePerSecond(count, since) * nbSeconds);
+    }
+
+    function averagePerSecond(total, since){
+        const now = new Date();
+        const seconds = (now - since) / 1000;
+        return parseInt(total) / seconds;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const stats = await getStats();
+        fillStats(stats);
+        initializeInteractiveElements();
+    });
+
+    async function getStats(){
+        const result = await fetch('/getStats?production');
+        const stats = await result.json();
+        const creationDate = new Date(stats.creationDate);
+        return {
+            total: stats,
+            average: {
+                visites: averages(stats.visits.value, creationDate),
+                attestations: averages(stats.certificates.value, creationDate),
+            }
+        };
+    }
+
+    async function fillStats(stats){
+        fillTotalStats(stats);
+        fillAverageStats(stats);
+    }
+
+    function fillTotalStats(stats){
+        document.getElementById('visits').innerHTML = stats.total.visits.value;
+        document.getElementById('certificates').innerHTML = stats.total.certificates.value;
+    }
+
+    function fillAverageStats(stats){
+        const list = document.getElementById('avg-stats');
+        for (const [statName, averageStat] of  Object.entries(stats.average)){
+            const sublist = document.createElement('ul');
+
+            for (const [statName, value] of averageStat){
+                const li = document.createElement('li');
+                li.innerHTML = `${Math.round(value)} par ${statName}`;
+                sublist.appendChild(li);
+            }
+
+            list.appendChild(document.createTextNode(statName));
+            list.appendChild(sublist);
+        }
+    }
+
+    function initializeInteractiveElements(){
+        // Materialize at https://materializecss.com/collapsible.html
+        const collapsibleElements = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(collapsibleElements, {});
+        const tooltipElements = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltipElements, {enterDelay: 500, margin: 20});
+
+        // https://clipboardjs.com/
+        new ClipboardJS('.btn');
+    }
+</script>
+
+</html>

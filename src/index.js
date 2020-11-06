@@ -34,7 +34,8 @@ server({ port: 8080, log: 'notice' }, [
     // Public endpoints, no config
     get('/get', certificateNoConfig),
     get('/set', buildURL),
-    get('/stats', readCounters)
+    get('/stats', stats),
+    get('/getStats', getStats)
 ]);
 
 
@@ -131,15 +132,20 @@ async function readCounter(endpoint, env = ENV){
     return await fetch(`${COUNTER_GET}/${endpoint}${env}`);
 }
 
-async function readCounters(context){
+
+async function stats(context){
+    return render('../templates/stats.hbs', {});
+}
+
+async function getStats(context){
     const env = (context.query.production != undefined)? "" : ENV;
     const [statsGET, statsSET] = await Promise.all([
         readCounter('get', env),
         readCounter('set', env),
     ]);
     return json({
-        'get': await statsGET.json(),
-        'set': await statsSET.json(),
-        'creationDate': COUNTER_START_DATE.toJSON(),
+        certificates: await statsGET.json(),
+        visits: await statsSET.json(),
+        creationDate: COUNTER_START_DATE.toJSON(),
     });
 }
