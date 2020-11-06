@@ -18,7 +18,7 @@ const ys = {
 export async function generatePdf (profile, reasons, pdfBase) {
   const creationInstant = moment.tz(new Date(), "Europe/Paris");
   const creationDate = creationInstant.format("DD/MM/YYYY");
-  const creationHour = creationInstant.format("HH:MM");
+  const creationHour = creationInstant.format("HH:mm");
 
   const {
     lastname,

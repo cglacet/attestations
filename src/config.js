@@ -69,14 +69,14 @@ export function getProfile(firstname, delay){
 }
 
 export function profile(person, delay){
-    const date = (delay != undefined) ? new Date(Date.now() + 60000 * parseFloat(delay)) : new Date();
-    const dateTZ = moment.tz(new Date(), "Europe/Paris");
+    // const date = (delay != undefined) ? new Date(Date.now() + 60000 * parseFloat(delay)) : new Date();
+    const dateTZ = moment.tz("Europe/Paris");
     person['firstname'] = capitalize(person['firstname']);
     person['lastname'] = capitalize(person['lastname']);
     person['city'] = capitalize(person['city']);
     return {
         ...person,
-        'heuresortie': dateTZ.format("HH:MM"),
+        'heuresortie': dateTZ.format("HH:mm"),
         'datesortie': dateTZ.format("DD/MM/YYYY"),
     }
 }
