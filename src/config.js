@@ -6,6 +6,7 @@ import moment from 'moment-timezone';
 export const ENV = process.env.HEROKU_ENV || "";
 const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
 export const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
+export const COUNTER_START_DATE = new Date(2020, 10, 5, 18, 16, 0);
 
 const TRANSLATION_RULES = new Map([
     ['nom', 'lastname'],
