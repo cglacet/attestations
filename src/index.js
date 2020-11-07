@@ -10,7 +10,6 @@ import hbs from './hbs';
 import App from './app';
 
 global.fetch = fetch;
-const { get, post } = server.router;
 const { send, json, type, render } = server.reply;
 const { Blob } = blobPolyfill;
 
