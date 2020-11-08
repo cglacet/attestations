@@ -1,70 +1,76 @@
 <div id="header">
+
+
             <div id="headline">
                 <h1>Attestations faciles</h1>
             </div>
+
+
             <div id="github">
                 <a href="https://github.com/cglacet/attestations">
                     <svg height="16" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                     <span>Source</span>
                 </a>
             </div>
-            <ul class="collapsible">
-                <li>
+
+
+            <div class="collapsible">
+                <div class="collapsible_list">
                     <div class="collapsible-header"><i class="material-icons">live_help</i>À quoi ça sert ?</div>
                     <div class="collapsible-body">
                             <div class='explanations'>
                                 <p>
                                     <h3>Honnêtement, pas à grand-chose</h3>
                                     Mais quelques gens partagent ma frustration. Perdre du temps pourquoi pas,
-                                    mais le perdre à remplir la même information 60 fois, bof ... 
+                                    mais le perdre à remplir la même information 60 fois, bof ...
                                 </p>
-                                    
+
                                     <div class="dialogue">
                                         <p>— Quelle est votre date de naissance ?</p>
                                         <p>— hmmm ... la même que ce matin je présume.</p>
                                     </div>
-                                    
+
                                 <p>
                                     <h3>À ne pas remplir le formulaire officiel 60 fois</h3>
-                                    Remplissez ce formulaire une seule fois et ajoutez cette page à vos 
+                                    Remplissez ce formulaire une seule fois et ajoutez cette page à vos
                                     favoris<a href="https://support.google.com/chrome/answer/188842?hl=fr"><i class="material-icons" style="font-size: 1em;">help_outline</i></a>.
-                                    Les prochaine fois, ouvrez simplement ce nouveau favoris pour 
+                                    Les prochaine fois, ouvrez simplement ce nouveau favoris pour
                                     générer de nouvelles attestations horodatées.
                                 </p>
-                                
+
                                 <p class='tips'>
-                                    Si comme moi vous n'utilisez que deux motifs de sortie, vous pouvez même gagner 
-                                    encore un clic en ajoutant directement dans vos favoris les deux générateurs (un par 
+                                    Si comme moi vous n'utilisez que deux motifs de sortie, vous pouvez même gagner
+                                    encore un clic en ajoutant directement dans vos favoris les deux générateurs (un par
                                     motif de sortie).
                                 </p>
                             </div>
                     </div>
-                </li>
-                <li>
+                </div>
+                <div class="collapsible_list">
                     <div class="collapsible-header"><i class="material-icons">security</i>Vous volez nos données ?</div>
                     <div class="collapsible-body">
                         <div class="explanations">
                             <p>
                                 <h3>Non</h3>
                                 J'ai d'abord fait ce projet pour <a href="https://www.linkedin.com/in/cglacet/">moi</a>.
-                                Je n'ai aucun intérêt dans vos données. 
-                                Le serveur ne fait qu'une chose, <em>il récupère les informations que vous envoyez, rempli le PDF officiel 
+                                Je n'ai aucun intérêt dans vos données.
+                                Le serveur ne fait qu'une chose, <em>il récupère les informations que vous envoyez, rempli le PDF officiel
                                 et vous le renvoie</em> (le code source de ce serveur est d'ailleurs disponible sur
                                 <a href="{{github-url}}">github</a>).
                             </p>
                             <p>
                                 Les données sont stockées dans l'adresse (URL) de votre navigateur web puis dans votre favoris.
-                                Cette adresse se modifie au fur et à mesure que vous 
+                                Cette adresse se modifie au fur et à mesure que vous
                                 remplissez le formulaire. C'est ainsi que vous conserverez vous-même les informations
-                                permettant à la fois de re-remplir automatiquement ce formulaire mais aussi de 
+                                permettant à la fois de re-remplir automatiquement ce formulaire mais aussi de
                                 générer directement vos attestations au format PDF.
                             </p>
 
                             <p>
-                                Par curiosité j'ai ajouté <a href="https://countapi.xyz/">un compteur</a> pour avoir une idée 
-                                du nombre de visites sur cette page, je vous partage donc cette information. 
-                                Depuis que j'ai ajouté le compteur il y a eu <b><span id="nb-visits"></span></b> visites sur 
-                                cette page et <b><span id="nb-attestations"></span></b> attestations créées 
+                                Par curiosité j'ai ajouté <a href="https://countapi.xyz/">un compteur</a> pour avoir une idée
+                                du nombre de visites sur cette page, je vous partage donc cette information.
+                                Depuis que j'ai ajouté le compteur il y a eu <b><span id="nb-visits"></span></b> visites sur
+                                cette page et <b><span id="nb-attestations"></span></b> attestations créées
                                 (soit en moyenne <b><span id="nb-attestations-per-hour"></span></b> attestations par heure).
 
                                 <script>
@@ -85,8 +91,8 @@
                             </p>
                         </div>
                     </div>
-                </li>
-                <li>
+                </div>
+                <div class="collapsible_list">
                     <div class="collapsible-header"><i class="material-icons">account_circle</i>Qui est derrière ce site ?</div>
                     <div class="collapsible-body">
                         <div class="explanations">
@@ -97,14 +103,14 @@
                                 où je travaille également sur des projets qui permettent de mieux investir son temps.
                                 Habituellement les weekends je bidouille des choses pour moi, par curiosité, pour apprendre
                                 des choses, mais pour une fois je me suis dit que ça pourrait intéresser des gens.
-                                C'est pour ça que j'ai partagé cette page 
+                                C'est pour ça que j'ai partagé cette page
                                 <a href="https://www.linkedin.com/posts/cglacet_attestations-faciles-activity-6728934673243758592-ueof">sur Linkedin</a>.
                             </p>
 
                             <p>
-                                Pour le moment j'ai fait ça presque seul sur mon temps libre, mais n'hésitez surtout pas à proposer des améliorations 
-                                directement sur <a href="{{github-url}}">github</a> (un grand merci à tous ceux qui ont 
-                                <a href="https://github.com/cglacet/attestations/issues?q=is%3Aissue">signalé des problèmes</a> et donc 
+                                Pour le moment j'ai fait ça presque seul sur mon temps libre, mais n'hésitez surtout pas à proposer des améliorations
+                                directement sur <a href="{{github-url}}">github</a> (un grand merci à tous ceux qui ont
+                                <a href="https://github.com/cglacet/attestations/issues?q=is%3Aissue">signalé des problèmes</a> et donc
                                 participé à l'amélioration de cette page).
                             </p>
 
@@ -126,6 +132,6 @@
                             </div>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
