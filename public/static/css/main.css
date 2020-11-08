@@ -4,7 +4,7 @@
 :root {
     --background-color: linear-gradient(to top right, #6699ff 0%, #ccccff 100%);
     --foreground-color: #242731;
-    --dark-background: #0a1f41; 
+    --dark-background: #0a1f41;
     --dark-foreground: #c2cafd;
     --box-background: #fefefe;
     --box-text-color: #242731;
@@ -14,8 +14,8 @@
     --inputs-background-color: transparent;
     --input-placeholder-color: #9b9b9b;
     --inputs-color: #212121;
-    --inputs-focus-color: #c7caff;
-    --inputs-autofill-color: #091f41;
+    --inputs-focus-color: rgb(9 31 65);
+    --inputs-autofill-color: rgb(9 31 65);
     /*--reasons-color: #d8400d;*/
     --link-visited-color: #173688;
     --link-color: #3541a7;
@@ -24,11 +24,11 @@
     --highlight-alt-color-3: rgb(200 203 255);
     --button-background: rgb(53 65 167);
     --button-hover-background: rgb(23 54 136);
-    --button-disabled-background: rgba(164, 164, 164, 1);
+    --button-disabled-background: rgb(204 205 255);
 }
 html {
     font-family: "Lato", sans-serif;
-    background-color: var(--background-color);
+    background: var(--background-color);
     margin: 0;
 }
 h1 {
@@ -226,6 +226,7 @@ label {
     font-weight: 700;
     color: #3441a7;
     padding: 10px;
+    border-bottom: 2px solid rgb(236 236 236);
     /*
     font-size: small;
     margin: auto 20px auto 0;
@@ -256,7 +257,7 @@ input {
     text-align: center;
     background-color: var(--inputs-background-color);
     border-radius: 0;
-    border-bottom: 2px solid #ececec;
+    border-bottom: 2px solid rgb(236 236 236);
     color: var(--inputs-color);
     transition: border .5s ease;
 }
