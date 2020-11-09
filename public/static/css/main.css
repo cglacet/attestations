@@ -363,11 +363,22 @@ ul:not(.browser-default)>li {
     margin-right: 1rem;
 }
 .collapsible-body {
-    display: none;
-    border-bottom: 1px solid #ddd;
+    /* Pas d'autre style ici, utilise ".collapsible-body .explanations" */
+    max-height: 500px; 
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.1s ease-out;
+}
+
+.collapsible-body.hidden {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.collapsible-body .explanations {
+    padding: 2rem;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 2rem;
 }
 
 option.tooltipped {
