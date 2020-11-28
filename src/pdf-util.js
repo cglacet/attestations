@@ -8,6 +8,7 @@ const pageHeight = 830;
 const ys = {
   travail: 276.5,
   achats_ou_culture: 347,
+  achats: 347,  // Backward compatibility 
   sante: 396.5,
   famille: 420,
   handicap: 456.5,
