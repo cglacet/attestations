@@ -4,8 +4,8 @@ import capitalize from 'capitalize';
 import moment from 'moment-timezone';
 
 export const ENV = process.env.HEROKU_ENV || "";
-const REPO_URL = 'https://github.com/cglacet/attestations/raw/master/';
-export const PDF_BASE = `${REPO_URL}/assets/certificate.pdf`; 
+const REPO_URL = 'https://github.com/cglacet/attestations/raw/heroku/';
+export const PDF_BASE = `${REPO_URL}/assets/certificate_v2.pdf`; 
 
 const TRANSLATION_RULES = new Map([
     ['nom', 'lastname'],
