@@ -2,17 +2,19 @@ import { generateQR } from './util'
 import moment from 'moment-timezone';
 import pdfLib from 'pdf-lib';
 const { PDFDocument, StandardFonts, rgb } = pdfLib;
+const pageHeight = 830;
+
 
 const ys = {
-  travail: 488,
-  achats: 417,
-  sante: 347,
-  famille: 325,
-  handicap: 291,
-  sport_animaux: 269,
-  convocation: 199,
-  missions: 178,
-  enfants: 157,
+  travail: 276.5,
+  achats_ou_culture: 347,
+  sante: 396.5,
+  famille: 420,
+  handicap: 456.5,
+  sport_animaux: 480.5,
+  convocation: 553.5,
+  missions: 578.5,
+  enfants: 602,
 }
 
 export async function generatePdf (profile, reasons, pdfBase) {
@@ -70,16 +72,16 @@ export async function generatePdf (profile, reasons, pdfBase) {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 107, 657)
-  drawText(birthday, 107, 627)
-  drawText(placeofbirth, 240, 627)
-  drawText(`${address} ${zipcode} ${city}`, 124, 596)
+  drawText(`${firstname} ${lastname}`, 94, pageHeight - 127)
+  drawText(birthday, 94, pageHeight - 146)
+  drawText(placeofbirth, 215, pageHeight - 146)
+  drawText(`${address} ${zipcode} ${city}`, 107, pageHeight - 164)
 
 
   reasons
     .split(', ')
     .forEach(reason => {
-        drawText('x', 59, ys[reason], 12)
+        drawText('x', 46.5, pageHeight- ys[reason], 12)
     })
 
   let locationSize = getIdealFontSize(font, profile.city, 83, 7, 11)
@@ -92,9 +94,9 @@ export async function generatePdf (profile, reasons, pdfBase) {
     locationSize = 7
   }
 
-  drawText(profile.city, 93, 122, locationSize)
-  drawText(`${profile.datesortie}`, 76, 92, 11)
-  drawText(`${profile.heuresortie}`, 246, 92, 11)
+  drawText(profile.city, 81, pageHeight - 752.5, locationSize)
+  drawText(`${profile.datesortie}`, 81, pageHeight - 770, 11)
+  drawText(`${profile.heuresortie}`, 233, pageHeight - 770, 11)
 
   // const shortCreationDate = `${creationDate.split('/')[0]}/${
   //   creationDate.split('/')[1]
