@@ -41,9 +41,9 @@
             <select required name="reasons" id="reasons" size={{available_reasons.length}}>
                 {{#each available_reasons}}
                 <option class="tooltipped" data-position="right"
-                    data-tooltip='<i class="material-icons reason-tooltip">{{this.icon}}</i><h3>{{this.code}}</h3>{{this.label}}'
+                    data-tooltip='<i class="material-icons reason-tooltip">{{this.icon}}</i><h3>{{this.short_label}}</h3>{{this.label}}'
                     value="{{this.code}}" {{#ifIn this.code ../profile.reasons}} selected {{/ifIn}}>
-                    {{this.code}}
+                    {{this.short_label}}
                     {{!-- this.label --}}
                 </option>
                 {{/each}}
